@@ -1,0 +1,519 @@
+{
+	"info": {
+		"_postman_id": "e98e1777-7195-429f-9d60-01be1881b59a",
+		"name": "Collection-1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48530783",
+		"_collection_link": "https://sushant-l-5957673.postman.co/workspace/Cloud_Kitchen~c70e4c66-bfc5-4500-8ecd-e14739f4ee5e/collection/48530783-e98e1777-7195-429f-9d60-01be1881b59a?action=share&source=collection_link&creator=48530783"
+	},
+	"item": [
+		{
+			"name": "Super_Admin_login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"   let response = pm.response.json();",
+							"   pm.collectionVariables.set(\"accessToken\", response.data.accessToken);",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"/*\r",
+							"if (pm.info.iteration!=0){\r",
+							"     pm.execution.skipRequest();\r",
+							"}\r",
+							"*/\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantId\": 0,\r\n  \"username\": \"{{Request_Param_1}}\",\r\n  \"password\": \"{{Request_Param_2}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Marchant_Creation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//if (pm.info.iteration === 1 && pm.response.code === 201) {\r",
+							"    //console.log(\"Merchant created successfully in iteration 1\");\r",
+							"//}\r",
+							"//console.log('in the post of marachant Marchant_Creation')\r",
+							"pm.collectionVariables.set(\"Merchant_id\", pm.response.json().data.merchantId);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantName\": \"{{Request_Param_1}}\",\r\n  \"email\": \"{{Request_Param_2}}\",\r\n  \"gstin\": \"{{Request_Param_3}}\",\r\n  \"username\": \"{{Request_Param_4}}\",\r\n  \"password\": \"{{Request_Param_5}}\",\r\n  \"phone\": \"{{Request_Param_6}}\",\r\n  \"address\": \"{{Request_Param_7}}\",\r\n  \"fssaiLicense\": \"{{Request_Param_8}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/merchants",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"merchants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delate_Marchant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/merchants/{{Merchant_id}}",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"merchants",
+						"{{Merchant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_Machant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/merchants?page=0&size=20&sortDirection=asc&search",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"merchants"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						},
+						{
+							"key": "sortDirection",
+							"value": "asc"
+						},
+						{
+							"key": "search",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"/******************** CSV INPUT ********************/\r",
+					"let api_request_name   = pm.iterationData.get(\"API_Request_Name\");\r",
+					"let expected_Status_Code = Number(pm.iterationData.get(\"Expected_Status_Code\"));\r",
+					"let user_Role          = pm.iterationData.get(\"user_role\");\r",
+					"\r",
+					"/******************** CURRENT REQUEST ********************/\r",
+					"let currentRequestName = pm.info.requestName;\r",
+					"\r",
+					"/******************** SKIP NON-MATCHING REQUEST ********************/\r",
+					"if (api_request_name && api_request_name !== currentRequestName) {\r",
+					"\r",
+					"    console.log(`⏭️ Skipping request: ${currentRequestName}`);\r",
+					"    pm.execution.skipRequest();\r",
+					"    return; // ✅ VERY IMPORTANT\r",
+					"}\r",
+					"\r",
+					"/******************** AUTH HANDLING (ONLY FOR MATCHED REQUEST) ********************/\r",
+					"if (expected_Status_Code === 401) {\r",
+					"\r",
+					"    console.log(\"🔐 401 Unauthorized → Clearing accessToken\");\r",
+					"    pm.collectionVariables.unset(\"accessToken\");\r",
+					"}\r",
+					"\r",
+					"/******************** OPTIONAL: 403 ROLE-BASED HANDLING ********************/\r",
+					"if (expected_Status_Code === 403) {\r",
+					"\r",
+					"    console.log(`⛔ 403 Forbidden for role: ${user_Role}`);\r",
+					"\r",
+					"    // Example role-based token reset\r",
+					"    if (user_Role === \"super_admin\") {\r",
+					"        pm.collectionVariables.unset(\"super_admin_token\");\r",
+					"    }\r",
+					"\r",
+					"    if (user_Role === \"merchant\") {\r",
+					"        pm.collectionVariables.unset(\"merchant_token\");\r",
+					"    }\r",
+					"\r",
+					"    pm.collectionVariables.unset(\"accessToken\");\r",
+					"}\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"/************************************************************\r",
+					" * STEP 0 – STATUS CODE VALIDATION (MANDATORY)\r",
+					" ************************************************************/\r",
+					"let actualStatusCode = pm.response.code;\r",
+					"let expectedStatusCode = Number(pm.iterationData.get(\"Expected_Status_Code\"));\r",
+					"\r",
+					"pm.test(\"Validate Status Code\", () => {\r",
+					"    pm.expect(actualStatusCode).to.eql(expectedStatusCode);\r",
+					"});\r",
+					"\r",
+					"if (actualStatusCode !== expectedStatusCode) {\r",
+					"    console.warn(\"Status mismatch. Skipping body validation.\");\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 1 – READ RESPONSE\r",
+					" ************************************************************/\r",
+					"let response = pm.response.json();\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 2 – CSV INPUTS\r",
+					" ************************************************************/\r",
+					"let scenareo = (pm.iterationData.get(\"Scenareo\") || \"\").split(\",\");\r",
+					"\r",
+					"let expected_result = JSON.parse(\r",
+					"    pm.iterationData.get(\"Expected_result\")\r",
+					");\r",
+					"\r",
+					"let uniqueKey   = pm.iterationData.get(\"Uniquekey\");   // optional\r",
+					"let uniqueValue = pm.iterationData.get(\"Uniquevalue\"); // optional\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 3 – FLATTEN EXPECTED JSON (ARRAY SAFE)\r",
+					" ************************************************************/\r",
+					"function flattenObject(obj, result = {}) {\r",
+					"    for (let [key, value] of Object.entries(obj)) {\r",
+					"\r",
+					"        if (Array.isArray(value)) {\r",
+					"            result[key] = value;\r",
+					"        }\r",
+					"        else if (typeof value === \"object\" && value !== null) {\r",
+					"            flattenObject(value, result);\r",
+					"        }\r",
+					"        else {\r",
+					"            result[key] = value;\r",
+					"        }\r",
+					"    }\r",
+					"    return result;\r",
+					"}\r",
+					"\r",
+					"let expectedMap = flattenObject(expected_result);\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 4 – GENERIC SMART FIND (ALL STRUCTURES)\r",
+					" ************************************************************/\r",
+					"function findValue(obj, returnKey, uniqueKey, uniqueValue) {\r",
+					"\r",
+					"    let found;\r",
+					"\r",
+					"    function traverse(current) {\r",
+					"        if (!current || found !== undefined) return;\r",
+					"\r",
+					"        // ARRAY\r",
+					"        if (Array.isArray(current)) {\r",
+					"            current.forEach(traverse);\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        // OBJECT\r",
+					"        if (typeof current === \"object\") {\r",
+					"\r",
+					"            // UNIQUE OBJECT MATCH\r",
+					"            if (\r",
+					"                uniqueKey &&\r",
+					"                current.hasOwnProperty(uniqueKey) &&\r",
+					"                String(current[uniqueKey]) === String(uniqueValue)\r",
+					"            ) {\r",
+					"                if (current.hasOwnProperty(returnKey)) {\r",
+					"                    found = current[returnKey];\r",
+					"                }\r",
+					"                return;\r",
+					"            }\r",
+					"\r",
+					"            // NORMAL KEY MATCH\r",
+					"            if (!uniqueKey && current.hasOwnProperty(returnKey)) {\r",
+					"                found = current[returnKey];\r",
+					"                return;\r",
+					"            }\r",
+					"\r",
+					"            Object.values(current).forEach(traverse);\r",
+					"        }\r",
+					"    }\r",
+					"\r",
+					"    traverse(obj);\r",
+					"    return found;\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 5 – USER FRIENDLY ASSERTION (FINAL)\r",
+					" ************************************************************/\r",
+					"/************************************************************\r",
+					" * STEP 5 – SIMPLE ASSERTION WITH VARIABLES\r",
+					" ************************************************************/\r",
+					"function assertResult(testName, key, expected, actual) {\r",
+					"\r",
+					"    pm.test(testName, () => {\r",
+					"\r",
+					"        // ❌ KEY MISSING\r",
+					"        if (actual === undefined) {\r",
+					"            pm.expect.fail(\r",
+					"                `Key \"${key}\" was not found in the API response.`\r",
+					"            );\r",
+					"        }\r",
+					"\r",
+					"        // ❌ VALUE NULL / EMPTY\r",
+					"        if (expected === \"\") {\r",
+					"            pm.expect(\r",
+					"                actual,\r",
+					"                `Value for key \"${key}\" is missing in the response.`\r",
+					"            ).to.not.be.null;\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        // ❌ ARRAY / OBJECT VALUE NOT FOUND\r",
+					"        if (Array.isArray(actual) || typeof actual === \"object\") {\r",
+					"\r",
+					"            let found = false;\r",
+					"\r",
+					"            function deepSearch(value) {\r",
+					"                if (value === null || value === undefined) return;\r",
+					"\r",
+					"                if (typeof value !== \"object\") {\r",
+					"                    if (String(value) === String(expected)) {\r",
+					"                        found = true;\r",
+					"                    }\r",
+					"                    return;\r",
+					"                }\r",
+					"\r",
+					"                if (Array.isArray(value)) {\r",
+					"                    value.forEach(deepSearch);\r",
+					"                } else {\r",
+					"                    Object.values(value).forEach(deepSearch);\r",
+					"                }\r",
+					"            }\r",
+					"\r",
+					"            deepSearch(actual);\r",
+					"\r",
+					"            pm.expect(\r",
+					"                found,\r",
+					"                `Expected value \"${expected}\" for key \"${key}\" was not found.`\r",
+					"            ).to.be.true;\r",
+					"\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        // ❌ VALUE MISMATCH\r",
+					"        pm.expect(\r",
+					"            String(actual),\r",
+					"            `Value mismatch for key \"${key}\". Expected \"${expected}\" but got \"${actual}\".`\r",
+					"        ).to.eql(String(expected));\r",
+					"    });\r",
+					"}\r",
+					"\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 6 – MAIN EXECUTION LOOP\r",
+					" ************************************************************/\r",
+					"Object.keys(expectedMap).forEach((key, index) => {\r",
+					"\r",
+					"    let expectedValue = expectedMap[key];\r",
+					"    let actualValue = findValue(response, key, uniqueKey, uniqueValue);\r",
+					"\r",
+					"    let testName = scenareo[index] || `Validate ${key}`;\r",
+					"\r",
+					"    assertResult(\r",
+					"        testName,\r",
+					"        key,\r",
+					"        expectedValue,\r",
+					"        actualValue,\r",
+					"        uniqueKey,\r",
+					"        uniqueValue\r",
+					"    );\r",
+					"\r",
+					"    console.log(\"KEY      :\", key);\r",
+					"    console.log(\"EXPECTED :\", expectedValue);\r",
+					"    console.log(\"ACTUAL   :\", actualValue);\r",
+					"});\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "Merchant_id",
+			"value": ""
+		}
+	]
+}
