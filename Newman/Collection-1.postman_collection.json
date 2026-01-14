@@ -14,8 +14,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"   let response = pm.response.json();",
-							"   pm.collectionVariables.set(\"accessToken\", response.data.accessToken);",
 							"",
 							"",
 							"",
@@ -99,6 +97,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+<<<<<<< HEAD
 							"//if (pm.info.iteration === 1 && pm.response.code === 201) {\r",
 							"    //console.log(\"Merchant created successfully in iteration 1\");\r",
 							"//}\r",
@@ -109,6 +108,8 @@
 							"pm.collectionVariables.set(\"Merchant_id\", pm.response.json().data.merchantId);\r",
 							"}\r",
 							"\r",
+=======
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 							"\r",
 							""
 						],
@@ -248,6 +249,24 @@
 		},
 		{
 			"name": "Marchant _forgot_password",
+<<<<<<< HEAD
+=======
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    });"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -412,12 +431,15 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+<<<<<<< HEAD
 							"let response = pm.response.json();\r",
 							"\r",
 							"pm.collectionVariables.set(\r",
 							"    \"website_configuration_id\",\r",
 							"    response.data.id\r",
 							");\r",
+=======
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 							"\r",
 							"\r",
 							""
@@ -453,6 +475,7 @@
 				"method": "POST",
 				"header": [],
 				"body": {
+<<<<<<< HEAD
 					"mode": "formdata",
 					"formdata": [
 						{
@@ -516,6 +539,10 @@
 							"src": []
 						}
 					]
+=======
+					"mode": "raw",
+					"raw": "{\r\n  \"kitchenName\": \"{{Request_Param_1}}\",\r\n  \"websiteAddress\": \"{{Request_Param_2}}\",\r\n  \"address\": \"{{Request_Param_3}}\",\r\n  \"description\": \"\",\r\n  \"whatsapp\": \"\",\r\n  \"instagram\": \"\",\r\n  \"youtube\": \"\",\r\n  \"twitter\": \"\",\r\n  \"facebook\": \"\",\r\n  \"logoS3Key\": \"{{Request_Param_11}}\",\r\n  \"bannerS3Keys\": [\r\n    \"{{Request_Param_11}}\"\r\n  ],\r\n  \"photoS3Key\": \"string\"\r\n}"
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 				},
 				"url": {
 					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}",
@@ -588,6 +615,7 @@
 				"method": "PATCH",
 				"header": [],
 				"body": {
+<<<<<<< HEAD
 					"mode": "formdata",
 					"formdata": [
 						{
@@ -651,6 +679,10 @@
 							"src": []
 						}
 					]
+=======
+					"mode": "raw",
+					"raw": "{\r\n  \"kitchenName\": \"{{Request_Param_1}}\",\r\n  \"websiteAddress\": \"{{Request_Param_2}}\",\r\n  \"address\": \"{{Request_Param_3}}\",\r\n  \"description\": \"\",\r\n  \"whatsapp\": \"\",\r\n  \"instagram\": \"\",\r\n  \"youtube\": \"\",\r\n  \"twitter\": \"\",\r\n  \"facebook\": \"\",\r\n  \"logoS3Key\": \"{{Request_Param_11}}\",\r\n  \"bannerS3Keys\": [\r\n    \"{{Request_Param_11}}\"\r\n  ],\r\n  \"photoS3Key\": \"string\"\r\n}"
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 				},
 				"url": {
 					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}?assetId={{website_configuration_id}}",
@@ -1230,8 +1262,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+<<<<<<< HEAD
 							"   let response = pm.response.json();\r",
 							"   pm.collectionVariables.set(\"marchant_accessToken\", response.data.accessToken);"
+=======
+							""
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -1320,6 +1356,7 @@
 				"packages": {},
 				"requests": {},
 				"exec": [
+<<<<<<< HEAD
 					"/************************************************************\r",
 					" * FINAL SAFE PRE-REQUEST SCRIPT (NO OVER-SKIP)\r",
 					" ************************************************************/\r",
@@ -1350,11 +1387,62 @@
 					"/******** REQUEST NAME CONTROL ********/\r",
 					"if (csvApiName && csvApiName !== currentRequest) {\r",
 					"    console.log(`⏭️ Skip | CSV API=${csvApiName} Current=${currentRequest}`);\r",
+=======
+					"\r",
+					"\r",
+					"/******** 1️⃣ READ VALUES FROM CSV ********/\r",
+					"let csvIteration = pm.iterationData.get(\"Iteration\");          \r",
+					"let csvApiName   = pm.iterationData.get(\"API_Request_Name\");  \r",
+					"let runFlag      = pm.iterationData.get(\"Running_Flag\");      \r",
+					"\r",
+					"/******** 2️⃣ CURRENT EXECUTION CONTEXT ********/\r",
+					"let currentIteration = pm.info.iteration + 1;   // Current iteration (1-based)\r",
+					"let currentRequest   = pm.info.requestName;     // Current request name\r",
+					"\r",
+					"/******** 3️⃣ RUNNING FLAG CHECK ********/\r",
+					"/*\r",
+					"   If Running_Flag is not \"Yes\",\r",
+					"   skip the request immediately\r",
+					"*/\r",
+					"if (!runFlag || runFlag.toLowerCase() !== \"yes\") {\r",
+					"    console.log(\"⏭️ SKIP | Running_Flag =\", runFlag);\r",
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 					"    pm.execution.skipRequest();\r",
 					"    return;\r",
 					"}\r",
 					"\r",
+<<<<<<< HEAD
 					"console.log(`✅ RUN | Iteration ${currentIteration} | ${currentRequest}`);\r",
+=======
+					"/******** 4️⃣ ITERATION CONTROL ********/\r",
+					"/*\r",
+					"   If Iteration is provided in CSV,\r",
+					"   it must match the current iteration\r",
+					"*/\r",
+					"if (csvIteration && Number(csvIteration) !== currentIteration) {\r",
+					"    console.log(\r",
+					"        \"⏭️ SKIP | CSV Iteration =\", csvIteration,\r",
+					"        \"| Current Iteration =\", currentIteration\r",
+					"    );\r",
+					"    pm.execution.skipRequest();\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"/******** 5️⃣ REQUEST NAME CONTROL ********/\r",
+					"/*\r",
+					"   If API_Request_Name is provided in CSV,\r",
+					"   it must exactly match the request name\r",
+					"*/\r",
+					"if (csvApiName && csvApiName !== currentRequest) {\r",
+					"    console.log(\r",
+					"        \"⏭️ SKIP | CSV API =\", csvApiName,\r",
+					"        \"| Current Request =\", currentRequest\r",
+					"    );\r",
+					"    pm.execution.skipRequest();\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 					"\r",
 					""
 				]
@@ -1368,6 +1456,7 @@
 				"requests": {},
 				"exec": [
 					"/************************************************************\r",
+<<<<<<< HEAD
 					" * STEP 0 – STATUS CODE VALIDATION\r",
 					" ************************************************************/\r",
 					"let actualStatusCode   = pm.response.code;\r",
@@ -1382,17 +1471,34 @@
 					"\r",
 					"if (actualStatusCode !== expectedStatusCode) {\r",
 					"    console.warn(\"❌ Status mismatch. Skipping body validation.\");\r",
+=======
+					" * STEP -1 : STATUS CODE CHECK\r",
+					" ************************************************************/\r",
+					"let actual_code = pm.response.code;\r",
+					"let expected_code = Number(pm.iterationData.get(\"Expected_Status_Code\"));\r",
+					"\r",
+					"if (actual_code !== expected_code) {\r",
+					"    pm.test(\"Verify status code is correct\", () => {\r",
+					"        pm.response.to.have.status(expected_code);\r",
+					"    });\r",
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 					"    return;\r",
 					"}\r",
 					"\r",
 					"/************************************************************\r",
-					" * STEP 1 – READ RESPONSE\r",
+					" * STEP 0 – READ RESPONSE & CSV\r",
 					" ************************************************************/\r",
-					"let response = pm.response.json();\r",
+					"let actualRoot = pm.response.json();\r",
+					"let expectedRoot = JSON.parse(pm.iterationData.get(\"Expected_result\") || {});\r",
+					"let rawScenario = String(pm.iterationData.get(\"Scenareo\") || \"\").trim();\r",
+					"\r",
+					"let uniqueKey   = String(pm.iterationData.get(\"Uniquekey\") || \"\").trim();\r",
+					"let uniqueValue = String(pm.iterationData.get(\"Uniquevalue\") || \"\").trim();\r",
 					"\r",
 					"/************************************************************\r",
-					" * STEP 2 – CSV INPUTS\r",
+					" * STEP 0.1 – UNIQUE OBJECT PICK (FOR LIST APIs)\r",
 					" ************************************************************/\r",
+<<<<<<< HEAD
 					"let scenareo        = (pm.iterationData.get(\"Scenareo\") || \"\").split(\",\");\r",
 					"let expected_result = JSON.parse(pm.iterationData.get(\"Expected_result\"));\r",
 					"let uniqueKey       = pm.iterationData.get(\"Uniquekey\");\r",
@@ -1474,8 +1580,73 @@
 					"            pm.expect.fail(\r",
 					"                `❌ Key Missing | Key \"${key}\" not found anywhere in API response`\r",
 					"            );\r",
+=======
+					"if (uniqueKey && uniqueValue) {\r",
+					"\r",
+					"    let foundObject = null;\r",
+					"\r",
+					"    function deepSearch(node) {\r",
+					"        if (!node || foundObject) return;\r",
+					"\r",
+					"        if (Array.isArray(node)) {\r",
+					"            node.forEach(deepSearch);\r",
+					"            return;\r",
 					"        }\r",
 					"\r",
+					"        if (typeof node === \"object\") {\r",
+					"            if (\r",
+					"                node.hasOwnProperty(uniqueKey) &&\r",
+					"                String(node[uniqueKey]) === String(uniqueValue)\r",
+					"            ) {\r",
+					"                foundObject = node;\r",
+					"                return;\r",
+					"            }\r",
+					"            Object.values(node).forEach(deepSearch);\r",
+					"        }\r",
+					"    }\r",
+					"\r",
+					"    deepSearch(actualRoot);\r",
+					"\r",
+					"    if (!foundObject) {\r",
+					"        pm.test(\"Verify unique object exists\", () => {\r",
+					"            pm.expect.fail(`❌ Object with ${uniqueKey}=${uniqueValue} not found`);\r",
+					"        });\r",
+					"        return;\r",
+					"    }\r",
+					"\r",
+					"    // 🔥 Switch validation root\r",
+					"    actualRoot = foundObject;\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 1 – GET VALUE BY PATH\r",
+					" ************************************************************/\r",
+					"function getValueByPath(obj, path) {\r",
+					"    return path\r",
+					"        .replace(/\\[(\\d+)\\]/g, '.$1')\r",
+					"        .split('.')\r",
+					"        .reduce((acc, key) => acc && acc[key], obj);\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 2 – FLATTEN EXPECTED OBJECT (path → value)\r",
+					" ************************************************************/\r",
+					"function flattenExpected(obj, prefix = \"\", out = {}) {\r",
+					"    for (let key in obj) {\r",
+					"        let path = prefix ? `${prefix}.${key}` : key;\r",
+					"        let val = obj[key];\r",
+					"\r",
+					"        if (typeof val === \"object\" && val !== null && !Array.isArray(val)) {\r",
+					"            flattenExpected(val, path, out);\r",
+					"        } else {\r",
+					"            out[path] = val;\r",
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
+					"        }\r",
+					"    }\r",
+					"    return out;\r",
+					"}\r",
+					"\r",
+<<<<<<< HEAD
 					"        // ✅ EXPECTED = NULL\r",
 					"        if (expected === null) {\r",
 					"            pm.expect(\r",
@@ -1511,11 +1682,89 @@
 					"            pm.expect(\r",
 					"                expectedStr.some(ev => actualStr.includes(ev)),\r",
 					"                `❌ Value Mismatch | Key \"${key}\" | Expected ANY of ${JSON.stringify(expectedStr)} but Actual values were ${JSON.stringify(actualStr)}`\r",
+=======
+					"let expectedMap = flattenExpected(expectedRoot);\r",
+					"let expectedKeys = Object.keys(expectedMap);\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 3 – SMART AUTO SCENARIO NAME BUILDER\r",
+					" ************************************************************/\r",
+					"function buildScenarioName(path, expectedValue) {\r",
+					"\r",
+					"    let keyName = path.split(\".\").slice(-1)[0];\r",
+					"    keyName = keyName.replace(/([A-Z])/g, \" $1\").toLowerCase();\r",
+					"\r",
+					"    if (\r",
+					"        typeof expectedValue === \"string\" &&\r",
+					"        expectedValue.startsWith(\"{{\") &&\r",
+					"        expectedValue.endsWith(\"}}\")\r",
+					"    ) {\r",
+					"        let varName = expectedValue.slice(2, -2);\r",
+					"        return `Capture ${keyName} into ${varName}`;\r",
+					"    }\r",
+					"\r",
+					"    if (expectedValue === \"NOT_NULL\") {\r",
+					"        return `Verify ${keyName} is not null`;\r",
+					"    }\r",
+					"\r",
+					"    if (\r",
+					"        typeof expectedValue === \"string\" &&\r",
+					"        expectedValue.startsWith(\"REGEX:\")\r",
+					"    ) {\r",
+					"        return `Verify ${keyName} format is valid`;\r",
+					"    }\r",
+					"\r",
+					"    if (expectedValue === null) {\r",
+					"        return `Verify ${keyName} is null`;\r",
+					"    }\r",
+					"\r",
+					"    return `Verify ${keyName} value is correct`;\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 4 – BUILD SCENARIO LIST (AUTO + CSV)\r",
+					" ************************************************************/\r",
+					"let userScenarios = rawScenario\r",
+					"    ? rawScenario.split(\",\").map(s => s.trim())\r",
+					"    : [];\r",
+					"\r",
+					"let scenarioList = expectedKeys.map((key, index) => {\r",
+					"    return userScenarios[index] || buildScenarioName(key, expectedMap[key]);\r",
+					"});\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 5 – SCENARIO-WISE VALIDATION\r",
+					" ************************************************************/\r",
+					"expectedKeys.forEach((path, index) => {\r",
+					"\r",
+					"    let expectedValue = expectedMap[path];\r",
+					"    let actualValue = getValueByPath(actualRoot, path);\r",
+					"    let scenarioName = scenarioList[index];\r",
+					"\r",
+					"    pm.test(scenarioName, () => {\r",
+					"\r",
+					"        /* ---------- {{var}} → NOT_NULL + SET VARIABLE ---------- */\r",
+					"        if (\r",
+					"            typeof expectedValue === \"string\" &&\r",
+					"            expectedValue.startsWith(\"{{\") &&\r",
+					"            expectedValue.endsWith(\"}}\")\r",
+					"        ) {\r",
+					"            let varName = expectedValue.slice(2, -2).trim();\r",
+					"\r",
+					"            pm.expect(\r",
+					"                actualValue !== null &&\r",
+					"                actualValue !== undefined &&\r",
+					"                actualValue !== \"\",\r",
+					"                `❌ ${path} expected NOT_NULL for {{${varName}}} but found ${actualValue}`\r",
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 					"            ).to.be.true;\r",
 					"\r",
+					"            pm.collectionVariables.set(varName, actualValue);\r",
+					"            console.log(`✅ Collection variable set: ${varName} = ${actualValue}`);\r",
 					"            return;\r",
 					"        }\r",
 					"\r",
+<<<<<<< HEAD
 					"        // ✅ EXPECTED = SINGLE VALUE\r",
 					"        pm.expect(\r",
 					"            actualValues.map(v => String(v)),\r",
@@ -1548,6 +1797,49 @@
 					"    console.log(\"EXPECTED      :\", expectedValue);\r",
 					"    console.log(\"ACTUAL VALUES :\", actualValues);\r",
 					"    \r",
+=======
+					"        /* ---------- NOT_NULL ---------- */\r",
+					"        if (expectedValue === \"NOT_NULL\") {\r",
+					"            pm.expect(\r",
+					"                actualValue !== null &&\r",
+					"                actualValue !== undefined &&\r",
+					"                actualValue !== \"\",\r",
+					"                `❌ ${path} expected NOT_NULL but found ${actualValue}`\r",
+					"            ).to.be.true;\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        /* ---------- REGEX ---------- */\r",
+					"        if (\r",
+					"            typeof expectedValue === \"string\" &&\r",
+					"            expectedValue.startsWith(\"REGEX:\")\r",
+					"        ) {\r",
+					"            let pattern = expectedValue.replace(\"REGEX:\", \"\");\r",
+					"            let regex = new RegExp(pattern);\r",
+					"\r",
+					"            pm.expect(\r",
+					"                regex.test(String(actualValue)),\r",
+					"                `❌ ${path} expected to match regex ${pattern} but got \"${actualValue}\"`\r",
+					"            ).to.be.true;\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        /* ---------- STRING CONTAINS ---------- */\r",
+					"        if (typeof expectedValue === \"string\" && typeof actualValue === \"string\") {\r",
+					"            pm.expect(\r",
+					"                actualValue.includes(expectedValue),\r",
+					"                `❌ ${path} expected to contain \"${expectedValue}\" but got \"${actualValue}\"`\r",
+					"            ).to.be.true;\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        /* ---------- DEFAULT EXACT MATCH ---------- */\r",
+					"        pm.expect(\r",
+					"            actualValue,\r",
+					"            `❌ ${path} mismatch`\r",
+					"        ).to.eql(expectedValue);\r",
+					"    });\r",
+>>>>>>> dd3f2ec (Updated Postman collection and test data)
 					"});\r",
 					""
 				]
@@ -1613,6 +1905,10 @@
 		},
 		{
 			"key": "LOCK_12_Delate_Marchant",
+			"value": ""
+		},
+		{
+			"key": "marchant_accessToken",
 			"value": ""
 		}
 	]
