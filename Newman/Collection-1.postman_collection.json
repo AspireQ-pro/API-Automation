@@ -14,6 +14,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"   let response = pm.response.json();",
+							"   pm.collectionVariables.set(\"accessToken\", response.data.accessToken);",
 							"",
 							"",
 							"",
@@ -28,7 +30,11 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"\r",
+							"/*\r",
+							"if (pm.info.iteration!=0){\r",
+							"     pm.execution.skipRequest();\r",
+							"}\r",
+							"*/\r",
 							""
 						],
 						"type": "text/javascript",
@@ -97,19 +103,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-<<<<<<< HEAD
 							"//if (pm.info.iteration === 1 && pm.response.code === 201) {\r",
 							"    //console.log(\"Merchant created successfully in iteration 1\");\r",
 							"//}\r",
 							"//console.log('in the post of marachant Marchant_Creation')\r",
-							"let expectedStatusCode = Number(pm.iterationData.get(\"Expected_Status_Code\"));\r",
-							"\r",
-							"if (expectedStatusCode===201){\r",
 							"pm.collectionVariables.set(\"Merchant_id\", pm.response.json().data.merchantId);\r",
-							"}\r",
 							"\r",
-=======
->>>>>>> dd3f2ec (Updated Postman collection and test data)
 							"\r",
 							""
 						],
@@ -246,1106 +245,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "Marchant _forgot_password",
-<<<<<<< HEAD
-=======
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"    });"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
->>>>>>> dd3f2ec (Updated Postman collection and test data)
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{marchant_accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"phone\": \"{{Request_Param_2}}\",\r\n  \"otpType\": \"{{Request_Param_3}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://65.0.92.207:8081/api/v1/auth/otp/request",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"otp",
-						"request"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Marchant_otp_veryfication",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"phone\": \"{{Request_Param_2}}\",\r\n  \"otp\": \"{{Request_Param_3}}\",\r\n  \"otpType\": \"{{Request_Param_4}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://65.0.92.207:8081/api/v1/auth/otp/verify",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"otp",
-						"verify"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update_marchant",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"merchantName\": \"{{Request_Param_1}}\",\r\n  \"email\": \"{{Request_Param_2}}\",\r\n  \"gstin\": \"{{Request_Param_3}}\",\r\n  \"phone\": \"{{Request_Param_4}}\",\r\n  \"address\": \"{{Request_Param_5}}\",\r\n  \"fssaiLicense\": \"{{Request_Param_6}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://65.0.92.207:8081/api/v1/merchants/{{Merchant_id}}",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"v1",
-						"merchants",
-						"{{Merchant_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get_Marchant_by id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{marchant_accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://65.0.92.207:8081/api/v1/merchants/{{Merchant_id}}",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"v1",
-						"merchants",
-						"{{Merchant_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create website configuration",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-<<<<<<< HEAD
-							"let response = pm.response.json();\r",
-							"\r",
-							"pm.collectionVariables.set(\r",
-							"    \"website_configuration_id\",\r",
-							"    response.data.id\r",
-							");\r",
-=======
->>>>>>> dd3f2ec (Updated Postman collection and test data)
-							"\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{marchant_accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-<<<<<<< HEAD
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "kitchenName ",
-							"value": "{{Request_Param_1}}",
-							"type": "text"
-						},
-						{
-							"key": "websiteAddress",
-							"value": "{{Request_Param_2}}",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "{{Request_Param_3}}",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "{{Request_Param_4}}",
-							"type": "text"
-						},
-						{
-							"key": "whatsapp",
-							"value": "{{Request_Param_5}}",
-							"type": "text"
-						},
-						{
-							"key": "instagram",
-							"value": "{{Request_Param_6}}",
-							"type": "text"
-						},
-						{
-							"key": "youtube",
-							"value": "{{Request_Param_7}}",
-							"type": "text"
-						},
-						{
-							"key": "twitter",
-							"value": "{{Request_Param_8}}",
-							"type": "text"
-						},
-						{
-							"key": "facebook",
-							"value": "{{Request_Param_9}}",
-							"type": "text"
-						},
-						{
-							"key": "logo",
-							"type": "file",
-							"src": []
-						},
-						{
-							"key": "banners",
-							"value": "{{Request_Param_11}}",
-							"type": "text"
-						},
-						{
-							"key": "photo",
-							"type": "file",
-							"src": []
-						}
-					]
-=======
-					"mode": "raw",
-					"raw": "{\r\n  \"kitchenName\": \"{{Request_Param_1}}\",\r\n  \"websiteAddress\": \"{{Request_Param_2}}\",\r\n  \"address\": \"{{Request_Param_3}}\",\r\n  \"description\": \"\",\r\n  \"whatsapp\": \"\",\r\n  \"instagram\": \"\",\r\n  \"youtube\": \"\",\r\n  \"twitter\": \"\",\r\n  \"facebook\": \"\",\r\n  \"logoS3Key\": \"{{Request_Param_11}}\",\r\n  \"bannerS3Keys\": [\r\n    \"{{Request_Param_11}}\"\r\n  ],\r\n  \"photoS3Key\": \"string\"\r\n}"
->>>>>>> dd3f2ec (Updated Postman collection and test data)
-				},
-				"url": {
-					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8082",
-					"path": [
-						"api",
-						"v1",
-						"website-config",
-						"{{Merchant_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get_website configuration",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{marchant_accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8082",
-					"path": [
-						"api",
-						"v1",
-						"website-config",
-						"{{Merchant_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Upadate_website configuration",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{marchant_accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PATCH",
-				"header": [],
-				"body": {
-<<<<<<< HEAD
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "kitchenName",
-							"value": "{{Request_Param_1}}",
-							"type": "text"
-						},
-						{
-							"key": "websiteAddress",
-							"value": "{{Request_Param_2}}",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "{{Request_Param_3}}",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "{{Request_Param_4}}",
-							"type": "text"
-						},
-						{
-							"key": "whatsapp",
-							"value": "{{Request_Param_4}}",
-							"type": "text"
-						},
-						{
-							"key": "instagram",
-							"value": "{{Request_Param_5}}",
-							"type": "text"
-						},
-						{
-							"key": "youtube",
-							"value": "{{Request_Param_6}}",
-							"type": "text"
-						},
-						{
-							"key": "twitter",
-							"value": "{{Request_Param_7}}",
-							"type": "text"
-						},
-						{
-							"key": "facebook",
-							"value": "{{Request_Param_8}}",
-							"type": "text"
-						},
-						{
-							"key": "logo",
-							"type": "file",
-							"src": []
-						},
-						{
-							"key": "banners",
-							"value": "{{Request_Param_9}}",
-							"type": "text"
-						},
-						{
-							"key": "photo",
-							"type": "file",
-							"src": []
-						}
-					]
-=======
-					"mode": "raw",
-					"raw": "{\r\n  \"kitchenName\": \"{{Request_Param_1}}\",\r\n  \"websiteAddress\": \"{{Request_Param_2}}\",\r\n  \"address\": \"{{Request_Param_3}}\",\r\n  \"description\": \"\",\r\n  \"whatsapp\": \"\",\r\n  \"instagram\": \"\",\r\n  \"youtube\": \"\",\r\n  \"twitter\": \"\",\r\n  \"facebook\": \"\",\r\n  \"logoS3Key\": \"{{Request_Param_11}}\",\r\n  \"bannerS3Keys\": [\r\n    \"{{Request_Param_11}}\"\r\n  ],\r\n  \"photoS3Key\": \"string\"\r\n}"
->>>>>>> dd3f2ec (Updated Postman collection and test data)
-				},
-				"url": {
-					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}?assetId={{website_configuration_id}}",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8082",
-					"path": [
-						"api",
-						"v1",
-						"website-config",
-						"{{Merchant_id}}"
-					],
-					"query": [
-						{
-							"key": "assetId",
-							"value": "{{website_configuration_id}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Unpublish_configure",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{marchant_accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}/unpublish",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8082",
-					"path": [
-						"api",
-						"v1",
-						"website-config",
-						"{{Merchant_id}}",
-						"unpublish"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Preview_Website_Url",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "IMG_Uplod__Logo_product_offer _banner_ photo",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Retrieve Image URLIMG_Get__Logo_product_offer _banner_ photo",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "IMG_Patch__Logo_product_offer _banner_ photo",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Retrieve Image URLIMG_Get__Logo_product_offer _banner_ photo",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_product_ByMarchant_id",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "publish_configure",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{marchant_accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}/publish",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8082",
-					"path": [
-						"api",
-						"v1",
-						"website-config",
-						"{{Merchant_id}}",
-						"publish"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get_product_Product_id",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "ADD_Menucard",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{marchant_accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "images ",
-							"type": "file",
-							"src": []
-						}
-					]
-				},
-				"url": {
-					"raw": "http://65.0.92.207:8082/api/v1/menucards/merchant/{{Merchant_id}}",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8082",
-					"path": [
-						"api",
-						"v1",
-						"menucards",
-						"merchant",
-						"{{Merchant_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get_All_menucard",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Update_menucard",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_menu_byID",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Add_offer",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_offer_bymarchant_ID",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Update_offer",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_offer_Offer_ID",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "create_ Ad",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_ad_with_filter",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "update_ad",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_ad_adid",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Customer_signup",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_Customer_ByMarchant",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Customer_forgot_Password",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Customer_OtpVerification",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_Customer_By_Customerid",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Customer_Login",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_Active_product_ByMarchant",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_Active_Offers_ByMarchant",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_Active_Menucards_ByMarchant",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_global_Offers",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_active_Advertisements",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_All_marchants",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_All_Users",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_User_By_ID",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_All_Customers",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_customer_ID",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_All_products",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_all_offers",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Customer_Logout",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Delate_Customer",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "delete _IMG_Patch__Logo_product_offer _banner_ photo",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Retrieve Image URLIMG_Get__Logo_product_offer _banner_ photo",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "delete _offer",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_offer_bymarchant_ID",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "delete _Product",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_product_ByMarchant_id",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Delate_menucard",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_menucard_All",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "delate_Ad",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_ad",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Delate_configure website",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get_website configuration",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Marchant_logout",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Marchant_Delate",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "SuperAdmin_Logout",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Marchant_login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-<<<<<<< HEAD
-							"   let response = pm.response.json();\r",
-							"   pm.collectionVariables.set(\"marchant_accessToken\", response.data.accessToken);"
-=======
-							""
->>>>>>> dd3f2ec (Updated Postman collection and test data)
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"username\": \"{{Request_Param_2}}\",\r\n  \"password\": \"{{Request_Param_3}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://65.0.92.207:8081/api/v1/auth/login",
-					"protocol": "http",
-					"host": [
-						"65",
-						"0",
-						"92",
-						"207"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
 		}
 	],
 	"event": [
@@ -1356,93 +255,52 @@
 				"packages": {},
 				"requests": {},
 				"exec": [
-<<<<<<< HEAD
-					"/************************************************************\r",
-					" * FINAL SAFE PRE-REQUEST SCRIPT (NO OVER-SKIP)\r",
-					" ************************************************************/\r",
+					"/******************** CSV INPUT ********************/\r",
+					"let api_request_name   = pm.iterationData.get(\"API_Request_Name\");\r",
+					"let expected_Status_Code = Number(pm.iterationData.get(\"Expected_Status_Code\"));\r",
+					"let user_Role          = pm.iterationData.get(\"user_role\");\r",
 					"\r",
-					"/******** CSV INPUT ********/\r",
-					"let csvIterationRaw = pm.iterationData.get(\"Iteration\");\r",
-					"let csvApiName      = pm.iterationData.get(\"API_Request_Name\");\r",
+					"/******************** CURRENT REQUEST ********************/\r",
+					"let currentRequestName = pm.info.requestName;\r",
 					"\r",
-					"/******** CURRENT CONTEXT ********/\r",
-					"let currentIteration = pm.info.iteration + 1;\r",
-					"let currentRequest   = pm.info.requestName;\r",
+					"/******************** SKIP NON-MATCHING REQUEST ********************/\r",
+					"if (api_request_name && api_request_name !== currentRequestName) {\r",
 					"\r",
-					"/******** VALIDATE CSV ITERATION ********/\r",
-					"if (!csvIterationRaw) {\r",
-					"    console.log(\"⚠️ CSV Iteration empty → allowing execution\");\r",
-					"} else {\r",
-					"    let csvIteration = Number(csvIterationRaw);\r",
+					"    console.log(`⏭️ Skipping request: ${currentRequestName}`);\r",
+					"    pm.execution.skipRequest();\r",
+					"    return; // ✅ VERY IMPORTANT\r",
+					"}\r",
 					"\r",
-					"    if (isNaN(csvIteration)) {\r",
-					"        console.log(\"⚠️ CSV Iteration NaN → allowing execution\");\r",
-					"    } else if (csvIteration !== currentIteration) {\r",
-					"        console.log(`⏭️ Skip | CSV=${csvIteration} Current=${currentIteration}`);\r",
-					"        pm.execution.skipRequest();\r",
-					"        return;\r",
+					"/******************** AUTH HANDLING (ONLY FOR MATCHED REQUEST) ********************/\r",
+					"if (expected_Status_Code === 401) {\r",
+					"\r",
+					"    console.log(\"🔐 401 Unauthorized → Clearing accessToken\");\r",
+					"    pm.collectionVariables.unset(\"accessToken\");\r",
+					"}\r",
+					"\r",
+					"/******************** OPTIONAL: 403 ROLE-BASED HANDLING ********************/\r",
+					"if (expected_Status_Code === 403) {\r",
+					"\r",
+					"    console.log(`⛔ 403 Forbidden for role: ${user_Role}`);\r",
+					"\r",
+					"    // Example role-based token reset\r",
+					"    if (user_Role === \"super_admin\") {\r",
+					"        pm.collectionVariables.unset(\"super_admin_token\");\r",
 					"    }\r",
+					"\r",
+					"    if (user_Role === \"merchant\") {\r",
+					"        pm.collectionVariables.unset(\"merchant_token\");\r",
+					"    }\r",
+					"\r",
+					"    pm.collectionVariables.unset(\"accessToken\");\r",
 					"}\r",
 					"\r",
-					"/******** REQUEST NAME CONTROL ********/\r",
-					"if (csvApiName && csvApiName !== currentRequest) {\r",
-					"    console.log(`⏭️ Skip | CSV API=${csvApiName} Current=${currentRequest}`);\r",
-=======
 					"\r",
 					"\r",
-					"/******** 1️⃣ READ VALUES FROM CSV ********/\r",
-					"let csvIteration = pm.iterationData.get(\"Iteration\");          \r",
-					"let csvApiName   = pm.iterationData.get(\"API_Request_Name\");  \r",
-					"let runFlag      = pm.iterationData.get(\"Running_Flag\");      \r",
 					"\r",
-					"/******** 2️⃣ CURRENT EXECUTION CONTEXT ********/\r",
-					"let currentIteration = pm.info.iteration + 1;   // Current iteration (1-based)\r",
-					"let currentRequest   = pm.info.requestName;     // Current request name\r",
 					"\r",
-					"/******** 3️⃣ RUNNING FLAG CHECK ********/\r",
-					"/*\r",
-					"   If Running_Flag is not \"Yes\",\r",
-					"   skip the request immediately\r",
-					"*/\r",
-					"if (!runFlag || runFlag.toLowerCase() !== \"yes\") {\r",
-					"    console.log(\"⏭️ SKIP | Running_Flag =\", runFlag);\r",
->>>>>>> dd3f2ec (Updated Postman collection and test data)
-					"    pm.execution.skipRequest();\r",
-					"    return;\r",
-					"}\r",
 					"\r",
-<<<<<<< HEAD
-					"console.log(`✅ RUN | Iteration ${currentIteration} | ${currentRequest}`);\r",
-=======
-					"/******** 4️⃣ ITERATION CONTROL ********/\r",
-					"/*\r",
-					"   If Iteration is provided in CSV,\r",
-					"   it must match the current iteration\r",
-					"*/\r",
-					"if (csvIteration && Number(csvIteration) !== currentIteration) {\r",
-					"    console.log(\r",
-					"        \"⏭️ SKIP | CSV Iteration =\", csvIteration,\r",
-					"        \"| Current Iteration =\", currentIteration\r",
-					"    );\r",
-					"    pm.execution.skipRequest();\r",
-					"    return;\r",
-					"}\r",
 					"\r",
-					"/******** 5️⃣ REQUEST NAME CONTROL ********/\r",
-					"/*\r",
-					"   If API_Request_Name is provided in CSV,\r",
-					"   it must exactly match the request name\r",
-					"*/\r",
-					"if (csvApiName && csvApiName !== currentRequest) {\r",
-					"    console.log(\r",
-					"        \"⏭️ SKIP | CSV API =\", csvApiName,\r",
-					"        \"| Current Request =\", currentRequest\r",
-					"    );\r",
-					"    pm.execution.skipRequest();\r",
-					"    return;\r",
-					"}\r",
-					"\r",
->>>>>>> dd3f2ec (Updated Postman collection and test data)
 					"\r",
 					""
 				]
@@ -1456,390 +314,182 @@
 				"requests": {},
 				"exec": [
 					"/************************************************************\r",
-<<<<<<< HEAD
-					" * STEP 0 – STATUS CODE VALIDATION\r",
+					" * STEP 0 – STATUS CODE VALIDATION (MANDATORY)\r",
 					" ************************************************************/\r",
-					"let actualStatusCode   = pm.response.code;\r",
+					"let actualStatusCode = pm.response.code;\r",
 					"let expectedStatusCode = Number(pm.iterationData.get(\"Expected_Status_Code\"));\r",
 					"\r",
 					"pm.test(\"Validate Status Code\", () => {\r",
-					"    pm.expect(\r",
-					"        actualStatusCode,\r",
-					"        `❌ Status Code Mismatch | Expected: ${expectedStatusCode}, Actual: ${actualStatusCode}`\r",
-					"    ).to.eql(expectedStatusCode);\r",
+					"    pm.expect(actualStatusCode).to.eql(expectedStatusCode);\r",
 					"});\r",
 					"\r",
 					"if (actualStatusCode !== expectedStatusCode) {\r",
-					"    console.warn(\"❌ Status mismatch. Skipping body validation.\");\r",
-=======
-					" * STEP -1 : STATUS CODE CHECK\r",
-					" ************************************************************/\r",
-					"let actual_code = pm.response.code;\r",
-					"let expected_code = Number(pm.iterationData.get(\"Expected_Status_Code\"));\r",
-					"\r",
-					"if (actual_code !== expected_code) {\r",
-					"    pm.test(\"Verify status code is correct\", () => {\r",
-					"        pm.response.to.have.status(expected_code);\r",
-					"    });\r",
->>>>>>> dd3f2ec (Updated Postman collection and test data)
+					"    console.warn(\"Status mismatch. Skipping body validation.\");\r",
 					"    return;\r",
 					"}\r",
 					"\r",
 					"/************************************************************\r",
-					" * STEP 0 – READ RESPONSE & CSV\r",
+					" * STEP 1 – READ RESPONSE\r",
 					" ************************************************************/\r",
-					"let actualRoot = pm.response.json();\r",
-					"let expectedRoot = JSON.parse(pm.iterationData.get(\"Expected_result\") || {});\r",
-					"let rawScenario = String(pm.iterationData.get(\"Scenareo\") || \"\").trim();\r",
-					"\r",
-					"let uniqueKey   = String(pm.iterationData.get(\"Uniquekey\") || \"\").trim();\r",
-					"let uniqueValue = String(pm.iterationData.get(\"Uniquevalue\") || \"\").trim();\r",
+					"let response = pm.response.json();\r",
 					"\r",
 					"/************************************************************\r",
-					" * STEP 0.1 – UNIQUE OBJECT PICK (FOR LIST APIs)\r",
+					" * STEP 2 – CSV INPUTS\r",
 					" ************************************************************/\r",
-<<<<<<< HEAD
-					"let scenareo        = (pm.iterationData.get(\"Scenareo\") || \"\").split(\",\");\r",
-					"let expected_result = JSON.parse(pm.iterationData.get(\"Expected_result\"));\r",
-					"let uniqueKey       = pm.iterationData.get(\"Uniquekey\");\r",
-					"let uniqueValue     = pm.iterationData.get(\"Uniquevalue\");\r",
+					"let scenareo = (pm.iterationData.get(\"Scenareo\") || \"\").split(\",\");\r",
+					"\r",
+					"let expected_result = JSON.parse(\r",
+					"    pm.iterationData.get(\"Expected_result\")\r",
+					");\r",
+					"\r",
+					"let uniqueKey   = pm.iterationData.get(\"Uniquekey\");   // from CSV\r",
+					"let uniqueValue = pm.iterationData.get(\"Uniquevalue\"); // from CSV\r",
 					"\r",
 					"/************************************************************\r",
-					" * STEP 3 – FLATTEN EXPECTED JSON (DUPLICATE SAFE)\r",
+					" * STEP 3 – FLATTEN EXPECTED JSON (ARRAY SAFE)\r",
 					" ************************************************************/\r",
-					"function extractExpectedPairs(obj, result = {}) {\r",
-					"\r",
-					"    if (obj === null || typeof obj !== \"object\") return result;\r",
-					"\r",
+					"function flattenObject(obj, result = {}) {\r",
 					"    for (let [key, value] of Object.entries(obj)) {\r",
 					"\r",
-					"        if (value !== null && typeof value === \"object\" && !Array.isArray(value)) {\r",
-					"            extractExpectedPairs(value, result);\r",
-					"        } else {\r",
-					"            if (result.hasOwnProperty(key)) {\r",
-					"                if (!Array.isArray(result[key])) {\r",
-					"                    result[key] = [result[key]];\r",
-					"                }\r",
-					"                result[key].push(value);\r",
-					"            } else {\r",
-					"                result[key] = value;\r",
-					"            }\r",
+					"        if (Array.isArray(value)) {\r",
+					"            result[key] = value;\r",
+					"        }\r",
+					"        else if (typeof value === \"object\" && value !== null) {\r",
+					"            flattenObject(value, result);\r",
+					"        }\r",
+					"        else {\r",
+					"            result[key] = value;\r",
 					"        }\r",
 					"    }\r",
 					"    return result;\r",
 					"}\r",
 					"\r",
+					"let expectedMap = flattenObject(expected_result);\r",
+					"\r",
 					"/************************************************************\r",
-					" * STEP 4 – GET ACTUAL VALUES\r",
+					" * STEP 4 – GENERIC SMART FIND (ALL STRUCTURES)\r",
 					" ************************************************************/\r",
-					"function getActualValues(obj, keyToFind, uniqueKey, uniqueValue, values = []) {\r",
+					"function findValue(obj, returnKey, uniqueKey, uniqueValue) {\r",
 					"\r",
-					"    if (!obj) return values;\r",
+					"    let found;\r",
 					"\r",
-					"    if (Array.isArray(obj)) {\r",
-					"        obj.forEach(item =>\r",
-					"            getActualValues(item, keyToFind, uniqueKey, uniqueValue, values)\r",
-					"        );\r",
-					"        return values;\r",
-					"    }\r",
+					"    function traverse(current) {\r",
+					"        if (!current || found !== undefined) return;\r",
 					"\r",
-					"    if (typeof obj === \"object\") {\r",
-					"\r",
-					"        if (\r",
-					"            uniqueKey &&\r",
-					"            obj.hasOwnProperty(uniqueKey) &&\r",
-					"            String(obj[uniqueKey]) !== String(uniqueValue)\r",
-					"        ) {\r",
-					"            return values;\r",
+					"        // ARRAY\r",
+					"        if (Array.isArray(current)) {\r",
+					"            current.forEach(traverse);\r",
+					"            return;\r",
 					"        }\r",
 					"\r",
-					"        for (let [key, value] of Object.entries(obj)) {\r",
+					"        // OBJECT\r",
+					"        if (typeof current === \"object\") {\r",
 					"\r",
-					"            if (key === keyToFind) {\r",
-					"                values.push(value);\r",
+					"            // UNIQUE OBJECT MATCH (CSV driven)\r",
+					"            if (\r",
+					"                uniqueKey &&\r",
+					"                current.hasOwnProperty(uniqueKey) &&\r",
+					"                String(current[uniqueKey]) === String(uniqueValue)\r",
+					"            ) {\r",
+					"                if (current.hasOwnProperty(returnKey)) {\r",
+					"                    found = current[returnKey];\r",
+					"                }\r",
+					"                return;\r",
 					"            }\r",
 					"\r",
-					"            if (typeof value === \"object\" && value !== null) {\r",
-					"                getActualValues(value, keyToFind, uniqueKey, uniqueValue, values);\r",
+					"            // NORMAL KEY MATCH\r",
+					"            if (!uniqueKey && current.hasOwnProperty(returnKey)) {\r",
+					"                found = current[returnKey];\r",
+					"                return;\r",
 					"            }\r",
+					"\r",
+					"            Object.values(current).forEach(traverse);\r",
 					"        }\r",
 					"    }\r",
 					"\r",
-					"    return values;\r",
+					"    traverse(obj);\r",
+					"    return found;\r",
 					"}\r",
 					"\r",
 					"/************************************************************\r",
-					" * STEP 5 – ASSERTION (CLEAR FAILURE MESSAGES)\r",
+					" * STEP 5 – FULLY GENERIC ASSERTION \r",
 					" ************************************************************/\r",
-					"function assertKey(testName, key, expected, actualValues) {\r",
+					"function assertResult(testName, expected, actual) {\r",
 					"\r",
 					"    pm.test(testName, () => {\r",
 					"\r",
-					"        // ❌ KEY MISSING\r",
-					"        if (!actualValues || actualValues.length === 0) {\r",
-					"            pm.expect.fail(\r",
-					"                `❌ Key Missing | Key \"${key}\" not found anywhere in API response`\r",
-					"            );\r",
-=======
-					"if (uniqueKey && uniqueValue) {\r",
-					"\r",
-					"    let foundObject = null;\r",
-					"\r",
-					"    function deepSearch(node) {\r",
-					"        if (!node || foundObject) return;\r",
-					"\r",
-					"        if (Array.isArray(node)) {\r",
-					"            node.forEach(deepSearch);\r",
+					"        // NOT NULL / EMPTY CHECK\r",
+					"        if (expected === \"\") {\r",
+					"            pm.expect(actual).to.not.be.undefined;\r",
+					"            pm.expect(actual).to.not.be.null;\r",
 					"            return;\r",
 					"        }\r",
 					"\r",
-					"        if (typeof node === \"object\") {\r",
-					"            if (\r",
-					"                node.hasOwnProperty(uniqueKey) &&\r",
-					"                String(node[uniqueKey]) === String(uniqueValue)\r",
-					"            ) {\r",
-					"                foundObject = node;\r",
-					"                return;\r",
+					"        // ARRAY / OBJECT / NESTED\r",
+					"        if (Array.isArray(actual) || typeof actual === \"object\") {\r",
+					"\r",
+					"            let found = false;\r",
+					"\r",
+					"            function deepSearch(value) {\r",
+					"\r",
+					"                if (value === null || value === undefined) return;\r",
+					"\r",
+					"                // PRIMITIVE\r",
+					"                if (typeof value !== \"object\") {\r",
+					"                    if (\r",
+					"                        String(value).toLowerCase() ===\r",
+					"                        String(expected).toLowerCase()\r",
+					"                    ) {\r",
+					"                        found = true;\r",
+					"                    }\r",
+					"                    return;\r",
+					"                }\r",
+					"\r",
+					"                // ARRAY\r",
+					"                if (Array.isArray(value)) {\r",
+					"                    value.forEach(deepSearch);\r",
+					"                    return;\r",
+					"                }\r",
+					"\r",
+					"                // OBJECT\r",
+					"                Object.values(value).forEach(deepSearch);\r",
 					"            }\r",
-					"            Object.values(node).forEach(deepSearch);\r",
-					"        }\r",
-					"    }\r",
 					"\r",
-					"    deepSearch(actualRoot);\r",
+					"            deepSearch(actual);\r",
 					"\r",
-					"    if (!foundObject) {\r",
-					"        pm.test(\"Verify unique object exists\", () => {\r",
-					"            pm.expect.fail(`❌ Object with ${uniqueKey}=${uniqueValue} not found`);\r",
-					"        });\r",
-					"        return;\r",
-					"    }\r",
-					"\r",
-					"    // 🔥 Switch validation root\r",
-					"    actualRoot = foundObject;\r",
-					"}\r",
-					"\r",
-					"/************************************************************\r",
-					" * STEP 1 – GET VALUE BY PATH\r",
-					" ************************************************************/\r",
-					"function getValueByPath(obj, path) {\r",
-					"    return path\r",
-					"        .replace(/\\[(\\d+)\\]/g, '.$1')\r",
-					"        .split('.')\r",
-					"        .reduce((acc, key) => acc && acc[key], obj);\r",
-					"}\r",
-					"\r",
-					"/************************************************************\r",
-					" * STEP 2 – FLATTEN EXPECTED OBJECT (path → value)\r",
-					" ************************************************************/\r",
-					"function flattenExpected(obj, prefix = \"\", out = {}) {\r",
-					"    for (let key in obj) {\r",
-					"        let path = prefix ? `${prefix}.${key}` : key;\r",
-					"        let val = obj[key];\r",
-					"\r",
-					"        if (typeof val === \"object\" && val !== null && !Array.isArray(val)) {\r",
-					"            flattenExpected(val, path, out);\r",
-					"        } else {\r",
-					"            out[path] = val;\r",
->>>>>>> dd3f2ec (Updated Postman collection and test data)
-					"        }\r",
-					"    }\r",
-					"    return out;\r",
-					"}\r",
-					"\r",
-<<<<<<< HEAD
-					"        // ✅ EXPECTED = NULL\r",
-					"        if (expected === null) {\r",
+					"            // ✅ CORRECT ASSERTION\r",
 					"            pm.expect(\r",
-					"                actualValues.some(v => v === null),\r",
-					"                `❌ NULL Mismatch | Key \"${key}\" expected NULL but actual values were: ${JSON.stringify(actualValues)}`\r",
+					"                found,\r",
+					"                `Expected value \"${expected}\" not found in response`\r",
 					"            ).to.be.true;\r",
+					"\r",
 					"            return;\r",
 					"        }\r",
 					"\r",
-					"        // ✅ EXPECTED = NOT_NULL\r",
-					"      // ✅ EXPECTED = NOT_NULL or BLANK\r",
-					"if (\r",
-					"    expected === \"\" ||\r",
-					"    String(expected).toUpperCase() === \"NOT_NULL\" ||\r",
-					"    (Array.isArray(expected) &&\r",
-					"     expected.map(v => String(v).toUpperCase()).includes(\"NOT_NULL\"))\r",
-					") {\r",
-					"    pm.expect(\r",
-					"        actualValues.some(v => v !== null),\r",
-					"        `❌ NOT_NULL Mismatch | Key \"${key}\" expected NOT NULL but actual values were ${JSON.stringify(actualValues)}`\r",
-					"    ).to.be.true;\r",
-					"    return;\r",
-					"}\r",
-					"\r",
-					"\r",
-					"\r",
-					"        // ✅ EXPECTED = ARRAY (Duplicate expected values)\r",
-					"        if (Array.isArray(expected)) {\r",
-					"\r",
-					"            let actualStr   = actualValues.map(v => String(v));\r",
-					"            let expectedStr = expected.map(v => String(v));\r",
-					"\r",
-					"            pm.expect(\r",
-					"                expectedStr.some(ev => actualStr.includes(ev)),\r",
-					"                `❌ Value Mismatch | Key \"${key}\" | Expected ANY of ${JSON.stringify(expectedStr)} but Actual values were ${JSON.stringify(actualStr)}`\r",
-=======
-					"let expectedMap = flattenExpected(expectedRoot);\r",
-					"let expectedKeys = Object.keys(expectedMap);\r",
-					"\r",
-					"/************************************************************\r",
-					" * STEP 3 – SMART AUTO SCENARIO NAME BUILDER\r",
-					" ************************************************************/\r",
-					"function buildScenarioName(path, expectedValue) {\r",
-					"\r",
-					"    let keyName = path.split(\".\").slice(-1)[0];\r",
-					"    keyName = keyName.replace(/([A-Z])/g, \" $1\").toLowerCase();\r",
-					"\r",
-					"    if (\r",
-					"        typeof expectedValue === \"string\" &&\r",
-					"        expectedValue.startsWith(\"{{\") &&\r",
-					"        expectedValue.endsWith(\"}}\")\r",
-					"    ) {\r",
-					"        let varName = expectedValue.slice(2, -2);\r",
-					"        return `Capture ${keyName} into ${varName}`;\r",
-					"    }\r",
-					"\r",
-					"    if (expectedValue === \"NOT_NULL\") {\r",
-					"        return `Verify ${keyName} is not null`;\r",
-					"    }\r",
-					"\r",
-					"    if (\r",
-					"        typeof expectedValue === \"string\" &&\r",
-					"        expectedValue.startsWith(\"REGEX:\")\r",
-					"    ) {\r",
-					"        return `Verify ${keyName} format is valid`;\r",
-					"    }\r",
-					"\r",
-					"    if (expectedValue === null) {\r",
-					"        return `Verify ${keyName} is null`;\r",
-					"    }\r",
-					"\r",
-					"    return `Verify ${keyName} value is correct`;\r",
-					"}\r",
-					"\r",
-					"/************************************************************\r",
-					" * STEP 4 – BUILD SCENARIO LIST (AUTO + CSV)\r",
-					" ************************************************************/\r",
-					"let userScenarios = rawScenario\r",
-					"    ? rawScenario.split(\",\").map(s => s.trim())\r",
-					"    : [];\r",
-					"\r",
-					"let scenarioList = expectedKeys.map((key, index) => {\r",
-					"    return userScenarios[index] || buildScenarioName(key, expectedMap[key]);\r",
-					"});\r",
-					"\r",
-					"/************************************************************\r",
-					" * STEP 5 – SCENARIO-WISE VALIDATION\r",
-					" ************************************************************/\r",
-					"expectedKeys.forEach((path, index) => {\r",
-					"\r",
-					"    let expectedValue = expectedMap[path];\r",
-					"    let actualValue = getValueByPath(actualRoot, path);\r",
-					"    let scenarioName = scenarioList[index];\r",
-					"\r",
-					"    pm.test(scenarioName, () => {\r",
-					"\r",
-					"        /* ---------- {{var}} → NOT_NULL + SET VARIABLE ---------- */\r",
-					"        if (\r",
-					"            typeof expectedValue === \"string\" &&\r",
-					"            expectedValue.startsWith(\"{{\") &&\r",
-					"            expectedValue.endsWith(\"}}\")\r",
-					"        ) {\r",
-					"            let varName = expectedValue.slice(2, -2).trim();\r",
-					"\r",
-					"            pm.expect(\r",
-					"                actualValue !== null &&\r",
-					"                actualValue !== undefined &&\r",
-					"                actualValue !== \"\",\r",
-					"                `❌ ${path} expected NOT_NULL for {{${varName}}} but found ${actualValue}`\r",
->>>>>>> dd3f2ec (Updated Postman collection and test data)
-					"            ).to.be.true;\r",
-					"\r",
-					"            pm.collectionVariables.set(varName, actualValue);\r",
-					"            console.log(`✅ Collection variable set: ${varName} = ${actualValue}`);\r",
-					"            return;\r",
-					"        }\r",
-					"\r",
-<<<<<<< HEAD
-					"        // ✅ EXPECTED = SINGLE VALUE\r",
+					"        // PRIMITIVE COMPARISON\r",
 					"        pm.expect(\r",
-					"            actualValues.map(v => String(v)),\r",
-					"            `❌ Value Mismatch | Key \"${key}\" | Expected: \"${expected}\" but Actual values were: ${JSON.stringify(actualValues)}`\r",
-					"        ).to.include(String(expected));\r",
+					"            String(actual).toLowerCase()\r",
+					"        ).to.eql(\r",
+					"            String(expected).toLowerCase()\r",
+					"        );\r",
 					"    });\r",
 					"}\r",
 					"\r",
+					"\r",
 					"/************************************************************\r",
-					" * STEP 6 – MAIN EXECUTION\r",
+					" * STEP 6 – MAIN EXECUTION LOOP\r",
 					" ************************************************************/\r",
-					"let expectedPairs = extractExpectedPairs(expected_result);\r",
+					"Object.keys(expectedMap).forEach((key, index) => {\r",
 					"\r",
-					"Object.keys(expectedPairs).forEach((key, index) => {\r",
-					"\r",
-					"    let expectedValue = expectedPairs[key];\r",
-					"\r",
-					"    let actualValues = getActualValues(\r",
-					"        response,\r",
-					"        key,\r",
-					"        uniqueKey,\r",
-					"        uniqueValue\r",
-					"    );\r",
+					"    let expectedValue = expectedMap[key];\r",
+					"    let actualValue = findValue(response, key, uniqueKey, uniqueValue);\r",
 					"\r",
 					"    let testName = scenareo[index] || `Validate ${key}`;\r",
+					"    assertResult(testName, expectedValue, actualValue);\r",
 					"\r",
-					"    assertKey(testName, key, expectedValue, actualValues);\r",
-					"\r",
-					"    console.log(\"KEY           :\", key);\r",
-					"    console.log(\"EXPECTED      :\", expectedValue);\r",
-					"    console.log(\"ACTUAL VALUES :\", actualValues);\r",
-					"    \r",
-=======
-					"        /* ---------- NOT_NULL ---------- */\r",
-					"        if (expectedValue === \"NOT_NULL\") {\r",
-					"            pm.expect(\r",
-					"                actualValue !== null &&\r",
-					"                actualValue !== undefined &&\r",
-					"                actualValue !== \"\",\r",
-					"                `❌ ${path} expected NOT_NULL but found ${actualValue}`\r",
-					"            ).to.be.true;\r",
-					"            return;\r",
-					"        }\r",
-					"\r",
-					"        /* ---------- REGEX ---------- */\r",
-					"        if (\r",
-					"            typeof expectedValue === \"string\" &&\r",
-					"            expectedValue.startsWith(\"REGEX:\")\r",
-					"        ) {\r",
-					"            let pattern = expectedValue.replace(\"REGEX:\", \"\");\r",
-					"            let regex = new RegExp(pattern);\r",
-					"\r",
-					"            pm.expect(\r",
-					"                regex.test(String(actualValue)),\r",
-					"                `❌ ${path} expected to match regex ${pattern} but got \"${actualValue}\"`\r",
-					"            ).to.be.true;\r",
-					"            return;\r",
-					"        }\r",
-					"\r",
-					"        /* ---------- STRING CONTAINS ---------- */\r",
-					"        if (typeof expectedValue === \"string\" && typeof actualValue === \"string\") {\r",
-					"            pm.expect(\r",
-					"                actualValue.includes(expectedValue),\r",
-					"                `❌ ${path} expected to contain \"${expectedValue}\" but got \"${actualValue}\"`\r",
-					"            ).to.be.true;\r",
-					"            return;\r",
-					"        }\r",
-					"\r",
-					"        /* ---------- DEFAULT EXACT MATCH ---------- */\r",
-					"        pm.expect(\r",
-					"            actualValue,\r",
-					"            `❌ ${path} mismatch`\r",
-					"        ).to.eql(expectedValue);\r",
-					"    });\r",
->>>>>>> dd3f2ec (Updated Postman collection and test data)
+					"    console.log(\"KEY:\", key);\r",
+					"    console.log(\"EXPECTED:\", expectedValue);\r",
+					"    console.log(\"ACTUAL:\", actualValue);\r",
 					"});\r",
 					""
 				]
@@ -1852,63 +502,7 @@
 			"value": ""
 		},
 		{
-			"key": "marchant_accessToken",
-			"value": ""
-		},
-		{
-			"key": "website_configuration_id",
-			"value": ""
-		},
-		{
-			"key": "LOCK_1_Super_Admin_login",
-			"value": ""
-		},
-		{
-			"key": "LOCK_2_Marchant_Creation",
-			"value": ""
-		},
-		{
-			"key": "LOCK_3_Get_All_Machant",
-			"value": ""
-		},
-		{
-			"key": "LOCK_4_Marchant_login",
-			"value": ""
-		},
-		{
-			"key": "LOCK_5_Marchant _forgot_password",
-			"value": ""
-		},
-		{
-			"key": "LOCK_6_Update_marchant",
-			"value": ""
-		},
-		{
-			"key": "LOCK_7_Get_Marchant_by id",
-			"value": ""
-		},
-		{
-			"key": "LOCK_8_create website configuration",
-			"value": ""
-		},
-		{
-			"key": "LOCK_9_Get_website configuration",
-			"value": ""
-		},
-		{
-			"key": "LOCK_10_Upadate_website configuration",
-			"value": ""
-		},
-		{
-			"key": "LOCK_11_Get_website configuration",
-			"value": ""
-		},
-		{
-			"key": "LOCK_12_Delate_Marchant",
-			"value": ""
-		},
-		{
-			"key": "marchant_accessToken",
+			"key": "Merchant_id",
 			"value": ""
 		}
 	]
