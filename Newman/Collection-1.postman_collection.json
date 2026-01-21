@@ -52,7 +52,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"merchantId\": 0,\r\n  \"username\": \"{{Request_Param_1}}\",\r\n  \"password\": \"{{Request_Param_2}}\"\r\n}",
+          "raw": "\r\n{{Request_Body}}\r\n\r\n",
           "options": {
             "raw": {
               "language": "json"
@@ -121,7 +121,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"merchantName\": \"{{Request_Param_1}}\",\r\n  \"email\": \"{{Request_Param_2}}\",\r\n  \"gstin\": \"{{Request_Param_3}}\",\r\n  \"username\": \"{{Request_Param_4}}\",\r\n  \"password\": \"{{Request_Param_5}}\",\r\n  \"phone\": \"{{Request_Param_6}}\",\r\n  \"address\": \"{{Request_Param_7}}\",\r\n  \"fssaiLicense\": \"{{Request_Param_8}}\"\r\n}",
+          "raw": "{{Request_Body}}",
           "options": {
             "raw": {
               "language": "json"
@@ -241,9 +241,7 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
-              "    });"
+              ""
             ],
             "type": "text/javascript",
             "packages": {},
@@ -266,7 +264,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"phone\": \"{{Request_Param_2}}\",\r\n  \"otpType\": \"{{Request_Param_3}}\"\r\n}",
+          "raw": "{{Request_Body}}",
           "options": {
             "raw": {
               "language": "json"
@@ -301,7 +299,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"phone\": \"{{Request_Param_2}}\",\r\n  \"otp\": \"{{Request_Param_3}}\",\r\n  \"otpType\": \"{{Request_Param_4}}\"\r\n}",
+          "raw": "{{Request_Body}}",
           "options": {
             "raw": {
               "language": "json"
@@ -346,7 +344,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"merchantName\": \"{{Request_Param_1}}\",\r\n  \"email\": \"{{Request_Param_2}}\",\r\n  \"gstin\": \"{{Request_Param_3}}\",\r\n  \"phone\": \"{{Request_Param_4}}\",\r\n  \"address\": \"{{Request_Param_5}}\",\r\n  \"fssaiLicense\": \"{{Request_Param_6}}\"\r\n}",
+          "raw": "{{Request_Body}}",
           "options": {
             "raw": {
               "language": "json"
@@ -451,7 +449,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"kitchenName\": \"{{Request_Param_1}}\",\r\n  \"websiteAddress\": \"{{Request_Param_2}}\",\r\n  \"address\": \"{{Request_Param_3}}\",\r\n  \"description\": \"\",\r\n  \"whatsapp\": \"\",\r\n  \"instagram\": \"\",\r\n  \"youtube\": \"\",\r\n  \"twitter\": \"\",\r\n  \"facebook\": \"\",\r\n  \"logoS3Key\": \"{{Request_Param_11}}\",\r\n  \"bannerS3Keys\": [\r\n    \"{{Request_Param_11}}\"\r\n  ],\r\n  \"photoS3Key\": \"string\"\r\n}"
+          "raw": "{{Request_Body}}"
         },
         "url": {
           "raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}",
@@ -525,7 +523,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"kitchenName\": \"{{Request_Param_1}}\",\r\n  \"websiteAddress\": \"{{Request_Param_2}}\",\r\n  \"address\": \"{{Request_Param_3}}\",\r\n  \"description\": \"\",\r\n  \"whatsapp\": \"\",\r\n  \"instagram\": \"\",\r\n  \"youtube\": \"\",\r\n  \"twitter\": \"\",\r\n  \"facebook\": \"\",\r\n  \"logoS3Key\": \"{{Request_Param_11}}\",\r\n  \"bannerS3Keys\": [\r\n    \"{{Request_Param_11}}\"\r\n  ],\r\n  \"photoS3Key\": \"string\"\r\n}"
+          "raw": "{{Request_Body}}"
         },
         "url": {
           "raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}?assetId={{website_configuration_id}}",
@@ -1119,7 +1117,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"username\": \"{{Request_Param_2}}\",\r\n  \"password\": \"{{Request_Param_3}}\"\r\n}",
+          "raw": "{{Request_Body}}",
           "options": {
             "raw": {
               "language": "json"
@@ -1143,6 +1141,22 @@
             "login"
           ]
         }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
       },
       "response": []
     },
