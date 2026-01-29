@@ -1,0 +1,59 @@
+Running_Flag,API_Request_Name,Base_URL,Endpoint,Method,Auth_Type,Token_Variable,Path_Params,Query_Params,Request_Body,Expected_Status_Code,Expected_result,Scenareo,Uniquekey,Uniquevalue
+yes,Super_Admin_login,http://65.0.92.207:8081,/api/v1/auth/login,POST,bearer,,,,"{
+  ""merchantId"": 0,
+  ""username"": ""admin"",
+  ""password"": ""Admin@123""
+}",200,"{ ""code"": 200, ""data"": { ""accessToken"": ""{{accessToken}}"", ""refreshToken"": ""NOT_NULL"" }, ""success"": true }",,,
+yes,Marchant_Creation,http://65.0.92.207:8081,/api/v1/merchants,POST,bearer,accessToken,,,"{ ""merchantName"": ""sushant"", ""email"": ""sushant123@gmail.com"", ""gstin"": ""29ABCDE1234F1Z5"", ""username"": ""sushant"", ""password"": ""Sush@123"", ""phone"": ""7083939302"", ""address"": ""Kolhapur"", ""fssaiLicense"": ""12300000000000"" }",201,"{ ""code"": 201, ""data"": { ""merchantId"": ""{{Merchant_id}}"", ""merchantName"": ""sushant"", ""phone"": ""7083939302"", ""email"": ""sushant123@gmail.com"", ""active"": true }, ""success"": true }",,,
+,Get_All_marchants,http://65.0.92.207:8081,api/v1api/v1/merchants?search/{{Merchant_id}}?search=7083939302,GET,bearer,accessToken,Merchant_id,search=7083939302,,200,"{
+  ""code"": 200,
+  ""data"": {
+    ""content"": [
+      {
+        ""merchantId"": 191,
+        ""merchantName"": ""sushant lad"",
+        ""phone"": ""7083939303"",
+        ""email"": ""sushant1234@gmail.com"",
+        ""address"": ""Alave panhala kolhapur 416230"",
+        ""gstin"": ""29ABCDE1294F1Z5"",
+        ""fssaiLicense"": ""12300000000000"",
+        ""active"": true,
+        ""createdAt"": ""2025-12-24T17:23:57.336112"",
+        ""updatedAt"": ""2025-12-24T17:23:57.336117"",
+        ""username"": ""sushant1"",
+        ""userId"": 303,
+        ""folderCreationStatus"": {
+          ""merchantId"": 191,
+          ""status"": ""PENDING"",
+          ""totalFolders"": null,
+          ""createdFolders"": null,
+          ""durationMs"": null,
+          ""errorMessage"": null,
+          ""startedAt"": null,
+          ""completedAt"": null
+        }
+      }
+    ],
+    ""page"": 0,
+    ""size"": 20,
+    ""totalElements"": 1,
+    ""totalPages"": 1,
+    ""first"": true,
+    ""last"": true
+  },
+  ""success"": true,
+  ""message"": ""Merchants retrieved successfully. Page 1 of 1, Total: 1"",
+  ""status"": 200
+}",,,
+Yes,Delete_Marchant,http://65.0.92.207:8081,/api/v1/merchants/{{Merchant_id}},DELETE,bearer,accessToken,Merchant_id,,,200,"{
+  ""code"": 200,
+  ""success"": true,
+  ""message"": ""Merchant ID 524 deleted successfully"",
+  ""status"": 200
+}",,,
+Yes,Delete_Marchant,http://65.0.92.207:8081,/api/v1/merchants/{{Merchant_id}},DELETE,bearer,accessToken,Merchant_id,,,404,"{
+  ""code"": 404,
+  ""success"": false,
+  ""message"": ""Merchant not found with ID: 526"",
+  ""status"": 404
+}",,,
