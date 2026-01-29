@@ -190,6 +190,7 @@
           "/* UNIQUE ROOT RESOLVER */\r",
           "function resolveValidationRoot(actualRoot, uniqueKey, uniqueValue) {\r",
           "\r",
+          "console.log(\"in the function\");\r",
           "    if (!uniqueKey || !uniqueValue) {\r",
           "        return actualRoot; // full response validation\r",
           "    }\r",
@@ -377,7 +378,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://65.0.92.207:8081api/v1api/v1/merchants?search/{{Merchant_id}}?search=7083939302",
+          "raw": "http://65.0.92.207:8081/api/v1/merchants?search=7083939302&status=true",
           "protocol": "http",
           "host": [
             "65",
@@ -387,15 +388,17 @@
           ],
           "path": [
             "api",
-            "v1api",
             "v1",
-            "merchants?search",
-            "{{Merchant_id}}?search=7083939302"
+            "merchants"
           ],
           "query": [
             {
-              "key": "search=7083939302",
-              "value": "{{search=7083939302}}"
+              "key": "search",
+              "value": "7083939302"
+            },
+            {
+              "key": "status",
+              "value": "true"
             }
           ],
           "port": "8081"
