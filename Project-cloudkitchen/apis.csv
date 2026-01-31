@@ -5,31 +5,85 @@ yes,Super_Admin_login,http://65.0.92.207:8081,/api/v1/auth/login,POST,bearer,,,,
   ""password"": ""Admin@123""
 }",200,"{ ""code"": 200, ""data"": { ""accessToken"": ""{{accessToken}}"", ""refreshToken"": ""NOT_NULL"" }, ""success"": true }",,,
 yes,Marchant_Creation,http://65.0.92.207:8081,/api/v1/merchants,POST,bearer,accessToken,,,"{ ""merchantName"": ""sushant"", ""email"": ""sushant123@gmail.com"", ""gstin"": ""29ABCDE1234F1Z5"", ""username"": ""sushant"", ""password"": ""Sush@123"", ""phone"": ""7083939302"", ""address"": ""Kolhapur"", ""fssaiLicense"": ""12300000000000"" }",201,"{ ""code"": 201, ""data"": { ""merchantId"": ""{{Merchant_id}}"", ""merchantName"": ""sushant"", ""phone"": ""7083939302"", ""email"": ""sushant123@gmail.com"", ""active"": true }, ""success"": true }",,,
-,Get_All_marchants,http://65.0.92.207:8081,api/v1api/v1/merchants?search/{{Merchant_id}}?search=7083939302,GET,bearer,accessToken,Merchant_id,search=7083939302,,200,"{
+YES,Get_Marchant_Id,http://65.0.92.207:8081,/api/v1/merchants/{{Merchant_id}},GET,bearer,accessToken,,,,200,"{
+    ""code"": 200,
+    ""data"": {
+        ""merchantId"": 548,
+        ""merchantName"": ""sushant"",
+        ""phone"": ""7083939302"",
+        ""email"": ""sushant123@gmail.com"",
+        ""address"": ""Kolhapur"",
+        ""gstin"": ""29ABCDE1234F1Z5"",
+        ""fssaiLicense"": ""12300000000000"",
+        ""active"": true,
+        ""createdAt"": ""2026-01-29T13:30:29.522327"",
+        ""updatedAt"": ""2026-01-29T13:30:29.522334"",
+        ""username"": ""sushant"",
+        ""userId"": 721,
+        ""folderCreationStatus"": {
+            ""merchantId"": 548,
+            ""status"": ""IN_PROGRESS"",
+            ""totalFolders"": 8,
+            ""createdFolders"": null,
+            ""durationMs"": null,
+            ""errorMessage"": null,
+            ""startedAt"": ""2026-01-29T13:30:29.883692348"",
+            ""completedAt"": null
+        }
+    },
+    ""success"": true,
+    ""message"": ""Merchant profile retrieved successfully"",
+    ""status"": 200
+}",,,
+yes,Get_All_marchants,http://65.0.92.207:8081,/api/v1/merchants,GET,bearer,accessToken,Merchant_id,,,200,"{
+                ""merchantId"": 543,
+                ""merchantName"": ""sushant"",
+                ""phone"": ""7083939302"",
+                ""email"": ""sushant123@gmail.com"",
+                ""address"": ""Kolhapur"",
+                ""gstin"": ""29ABCDE1234F1Z5"",
+                ""fssaiLicense"": ""12300000000000"",
+                ""active"": true,
+                ""createdAt"": ""2026-01-29T11:43:21.479037"",
+                ""updatedAt"": ""2026-01-29T11:43:21.479048"",
+                ""username"": ""sushant"",
+                ""userId"": 716,
+                ""folderCreationStatus"": {
+                    ""merchantId"": 543,
+                    ""status"": ""COMPLETED"",
+                    ""totalFolders"": 8,
+                    ""createdFolders"": 8,
+                    ""durationMs"": 3767,
+                    ""errorMessage"": null,
+                    ""startedAt"": ""2026-01-29T11:43:21.855656878"",
+                    ""completedAt"": ""2026-01-29T11:43:25.622125942""
+                }
+            }",,phone,7083939302
+yes,Get_marchants,http://65.0.92.207:8081,/api/v1/merchants,GET,bearer,accessToken,Merchant_id,search=7083939302,,200,"{
   ""code"": 200,
   ""data"": {
     ""content"": [
       {
-        ""merchantId"": 191,
-        ""merchantName"": ""sushant lad"",
-        ""phone"": ""7083939303"",
-        ""email"": ""sushant1234@gmail.com"",
-        ""address"": ""Alave panhala kolhapur 416230"",
-        ""gstin"": ""29ABCDE1294F1Z5"",
+        ""merchantId"": 547,
+        ""merchantName"": ""sushant"",
+        ""phone"": ""7083939302"",
+        ""email"": ""sushant123@gmail.com"",
+        ""address"": ""Kolhapur"",
+        ""gstin"": ""29ABCDE1234F1Z5"",
         ""fssaiLicense"": ""12300000000000"",
         ""active"": true,
-        ""createdAt"": ""2025-12-24T17:23:57.336112"",
-        ""updatedAt"": ""2025-12-24T17:23:57.336117"",
-        ""username"": ""sushant1"",
-        ""userId"": 303,
+        ""createdAt"": ""2026-01-29T13:18:20.320949"",
+        ""updatedAt"": ""2026-01-29T13:18:20.320956"",
+        ""username"": ""sushant"",
+        ""userId"": 720,
         ""folderCreationStatus"": {
-          ""merchantId"": 191,
-          ""status"": ""PENDING"",
-          ""totalFolders"": null,
-          ""createdFolders"": null,
+          ""merchantId"": 547,
+          ""status"": ""IN_PROGRESS"",
+          ""totalFolders"": 8,
+          ""createdFolders"": 2,
           ""durationMs"": null,
           ""errorMessage"": null,
-          ""startedAt"": null,
+          ""startedAt"": ""2026-01-29T13:18:20.732264511"",
           ""completedAt"": null
         }
       }

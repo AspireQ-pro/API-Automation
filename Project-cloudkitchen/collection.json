@@ -190,7 +190,6 @@
           "/* UNIQUE ROOT RESOLVER */\r",
           "function resolveValidationRoot(actualRoot, uniqueKey, uniqueValue) {\r",
           "\r",
-          "console.log(\"in the function\");\r",
           "    if (!uniqueKey || !uniqueValue) {\r",
           "        return actualRoot; // full response validation\r",
           "    }\r",
@@ -230,11 +229,18 @@
           "\r",
           "/* FLATTEN EXPECTED JSON */\r",
           "function flattenExpected(obj, prefix = \"\", out = {}) {\r",
+          "    if (Array.isArray(obj)) {\r",
+          "        obj.forEach((item, index) => {\r",
+          "            flattenExpected(item, `${prefix}[${index}]`, out);\r",
+          "        });\r",
+          "        return out;\r",
+          "    }\r",
+          "\r",
           "    for (let key in obj) {\r",
           "        let path = prefix ? `${prefix}.${key}` : key;\r",
           "        let val = obj[key];\r",
           "\r",
-          "        if (typeof val === \"object\" && val !== null && !Array.isArray(val)) {\r",
+          "        if (typeof val === \"object\" && val !== null) {\r",
           "            flattenExpected(val, path, out);\r",
           "        } else {\r",
           "            out[path] = val;\r",
@@ -242,6 +248,7 @@
           "    }\r",
           "    return out;\r",
           "}\r",
+          "\r",
           "\r",
           "/* AUTO SCENARIO NAME BUILDER */\r",
           "function buildScenarioName(path, expectedValue) {\r",
@@ -363,6 +370,42 @@
       "response": []
     },
     {
+      "name": "Get_Marchant_Id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://65.0.92.207:8081/api/v1/merchants/{{Merchant_id}}",
+          "protocol": "http",
+          "host": [
+            "65",
+            "0",
+            "92",
+            "207"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "merchants",
+            "{{Merchant_id}}"
+          ],
+          "query": [],
+          "port": "8081"
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Get_All_marchants",
       "request": {
         "auth": {
@@ -378,7 +421,42 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://65.0.92.207:8081/api/v1/merchants?search=7083939302&status=true",
+          "raw": "http://65.0.92.207:8081/api/v1/merchants",
+          "protocol": "http",
+          "host": [
+            "65",
+            "0",
+            "92",
+            "207"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "merchants"
+          ],
+          "query": [],
+          "port": "8081"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get_marchants",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://65.0.92.207:8081/api/v1/merchants?search=7083939302",
           "protocol": "http",
           "host": [
             "65",
@@ -395,10 +473,6 @@
             {
               "key": "search",
               "value": "7083939302"
-            },
-            {
-              "key": "status",
-              "value": "true"
             }
           ],
           "port": "8081"
