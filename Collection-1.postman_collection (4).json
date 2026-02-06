@@ -1,0 +1,1490 @@
+{
+	"info": {
+		"_postman_id": "e98e1777-7195-429f-9d60-01be1881b59a",
+		"name": "Collection-1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48530783",
+		"_collection_link": "https://sushant-l-5957673.postman.co/workspace/Cloud_Kitchen~c70e4c66-bfc5-4500-8ecd-e14739f4ee5e/collection/48530783-e98e1777-7195-429f-9d60-01be1881b59a?action=share&source=collection_link&creator=48530783"
+	},
+	"item": [
+		{
+			"name": "Super_Admin_login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantId\": 0,\r\n  \"username\": \"{{Request_Param_1}}\",\r\n  \"password\": \"{{Request_Param_2}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Marchant_Creation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantName\": \"{{Request_Param_1}}\",\r\n  \"email\": \"{{Request_Param_2}}\",\r\n  \"gstin\": \"{{Request_Param_3}}\",\r\n  \"username\": \"{{Request_Param_4}}\",\r\n  \"password\": \"{{Request_Param_5}}\",\r\n  \"phone\": \"{{Request_Param_6}}\",\r\n  \"address\": \"{{Request_Param_7}}\",\r\n  \"fssaiLicense\": \"{{Request_Param_8}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/merchants",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"merchants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delate_Marchant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/merchants/{{Merchant_id}}",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"merchants",
+						"{{Merchant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_Machant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/merchants?page=0&size=20&sortDirection=asc&search",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"merchants"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						},
+						{
+							"key": "sortDirection",
+							"value": "asc"
+						},
+						{
+							"key": "search",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Marchant _forgot_password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    });"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{marchant_accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"phone\": \"{{Request_Param_2}}\",\r\n  \"otpType\": \"{{Request_Param_3}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/auth/otp/request",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"otp",
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Marchant_otp_veryfication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"phone\": \"{{Request_Param_2}}\",\r\n  \"otp\": \"{{Request_Param_3}}\",\r\n  \"otpType\": \"{{Request_Param_4}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/auth/otp/verify",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"otp",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_marchant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantName\": \"{{Request_Param_1}}\",\r\n  \"email\": \"{{Request_Param_2}}\",\r\n  \"gstin\": \"{{Request_Param_3}}\",\r\n  \"phone\": \"{{Request_Param_4}}\",\r\n  \"address\": \"{{Request_Param_5}}\",\r\n  \"fssaiLicense\": \"{{Request_Param_6}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/merchants/{{Merchant_id}}",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"merchants",
+						"{{Merchant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Marchant_by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{marchant_accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/merchants/{{Merchant_id}}",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"merchants",
+						"{{Merchant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create website configuration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{marchant_accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"kitchenName\": \"{{Request_Param_1}}\",\r\n  \"websiteAddress\": \"{{Request_Param_2}}\",\r\n  \"address\": \"{{Request_Param_3}}\",\r\n  \"description\": \"\",\r\n  \"whatsapp\": \"\",\r\n  \"instagram\": \"\",\r\n  \"youtube\": \"\",\r\n  \"twitter\": \"\",\r\n  \"facebook\": \"\",\r\n  \"logoS3Key\": \"{{Request_Param_11}}\",\r\n  \"bannerS3Keys\": [\r\n    \"{{Request_Param_11}}\"\r\n  ],\r\n  \"photoS3Key\": \"string\"\r\n}"
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"website-config",
+						"{{Merchant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_website configuration",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{marchant_accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"website-config",
+						"{{Merchant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upadate_website configuration",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{marchant_accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"kitchenName\": \"{{Request_Param_1}}\",\r\n  \"websiteAddress\": \"{{Request_Param_2}}\",\r\n  \"address\": \"{{Request_Param_3}}\",\r\n  \"description\": \"\",\r\n  \"whatsapp\": \"\",\r\n  \"instagram\": \"\",\r\n  \"youtube\": \"\",\r\n  \"twitter\": \"\",\r\n  \"facebook\": \"\",\r\n  \"logoS3Key\": \"{{Request_Param_11}}\",\r\n  \"bannerS3Keys\": [\r\n    \"{{Request_Param_11}}\"\r\n  ],\r\n  \"photoS3Key\": \"string\"\r\n}"
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}?assetId={{website_configuration_id}}",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"website-config",
+						"{{Merchant_id}}"
+					],
+					"query": [
+						{
+							"key": "assetId",
+							"value": "{{website_configuration_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unpublish_configure",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{marchant_accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}/unpublish",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"website-config",
+						"{{Merchant_id}}",
+						"unpublish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Preview_Website_Url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IMG_Uplod__Logo_product_offer _banner_ photo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Image URLIMG_Get__Logo_product_offer _banner_ photo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "IMG_Patch__Logo_product_offer _banner_ photo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Image URLIMG_Get__Logo_product_offer _banner_ photo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_product_ByMarchant_id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "publish_configure",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{marchant_accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://65.0.92.207:8082/api/v1/website-config/{{Merchant_id}}/publish",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"website-config",
+						"{{Merchant_id}}",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_product_Product_id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "ADD_Menucard",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{marchant_accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "images ",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8082/api/v1/menucards/merchant/{{Merchant_id}}",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"menucards",
+						"merchant",
+						"{{Merchant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_menucard",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update_menucard",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_menu_byID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Add_offer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_offer_bymarchant_ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update_offer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_offer_Offer_ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "create_ Ad",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_ad_with_filter",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "update_ad",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_ad_adid",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Customer_signup",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Customer_ByMarchant",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Customer_forgot_Password",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Customer_OtpVerification",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Customer_By_Customerid",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Customer_Login",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Active_product_ByMarchant",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Active_Offers_ByMarchant",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Active_Menucards_ByMarchant",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_global_Offers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_active_Advertisements",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_marchants",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_Users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_User_By_ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_Customers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_customer_ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_products",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_all_offers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Customer_Logout",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delate_Customer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "delete _IMG_Patch__Logo_product_offer _banner_ photo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Image URLIMG_Get__Logo_product_offer _banner_ photo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "delete _offer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_offer_bymarchant_ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "delete _Product",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_product_ByMarchant_id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delate_menucard",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_menucard_All",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "delate_Ad",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_ad",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delate_configure website",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get_website configuration",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Marchant_logout",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Marchant_Delate",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "SuperAdmin_Logout",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Marchant_login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantId\": {{Request_Param_1}},\r\n  \"username\": \"{{Request_Param_2}}\",\r\n  \"password\": \"{{Request_Param_3}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://65.0.92.207:8081/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"65",
+						"0",
+						"92",
+						"207"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"\r",
+					"\r",
+					"/******** 1️⃣ READ VALUES FROM CSV ********/\r",
+					"let csvIteration = pm.iterationData.get(\"Iteration\");          \r",
+					"let csvApiName   = pm.iterationData.get(\"API_Request_Name\");  \r",
+					"let runFlag      = pm.iterationData.get(\"Running_Flag\");      \r",
+					"\r",
+					"/******** 2️⃣ CURRENT EXECUTION CONTEXT ********/\r",
+					"let currentIteration = pm.info.iteration + 1;   // Current iteration (1-based)\r",
+					"let currentRequest   = pm.info.requestName;     // Current request name\r",
+					"\r",
+					"/******** 3️⃣ RUNNING FLAG CHECK ********/\r",
+					"/*\r",
+					"   If Running_Flag is not \"Yes\",\r",
+					"   skip the request immediately\r",
+					"*/\r",
+					"if (!runFlag || runFlag.toLowerCase() !== \"yes\") {\r",
+					"    console.log(\"⏭️ SKIP | Running_Flag =\", runFlag);\r",
+					"    pm.execution.skipRequest();\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"/******** 4️⃣ ITERATION CONTROL ********/\r",
+					"/*\r",
+					"   If Iteration is provided in CSV,\r",
+					"   it must match the current iteration\r",
+					"*/\r",
+					"if (csvIteration && Number(csvIteration) !== currentIteration) {\r",
+					"    console.log(\r",
+					"        \"⏭️ SKIP | CSV Iteration =\", csvIteration,\r",
+					"        \"| Current Iteration =\", currentIteration\r",
+					"    );\r",
+					"    pm.execution.skipRequest();\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"/******** 5️⃣ REQUEST NAME CONTROL ********/\r",
+					"/*\r",
+					"   If API_Request_Name is provided in CSV,\r",
+					"   it must exactly match the request name\r",
+					"*/\r",
+					"if (csvApiName && csvApiName !== currentRequest) {\r",
+					"    console.log(\r",
+					"        \"⏭️ SKIP | CSV API =\", csvApiName,\r",
+					"        \"| Current Request =\", currentRequest\r",
+					"    );\r",
+					"    pm.execution.skipRequest();\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"/************************************************************\r",
+					" * STEP -1 : STATUS CODE CHECK\r",
+					" ************************************************************/\r",
+					"let actual_code = pm.response.code;\r",
+					"let expected_code = Number(pm.iterationData.get(\"Expected_Status_Code\"));\r",
+					"\r",
+					"if (actual_code !== expected_code) {\r",
+					"    pm.test(\"Verify status code is correct\", () => {\r",
+					"        pm.response.to.have.status(expected_code);\r",
+					"    });\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 0 – READ RESPONSE & CSV\r",
+					" ************************************************************/\r",
+					"let actualRoot = pm.response.json();\r",
+					"let expectedRoot = JSON.parse(pm.iterationData.get(\"Expected_result\") || {});\r",
+					"let rawScenario = String(pm.iterationData.get(\"Scenareo\") || \"\").trim();\r",
+					"\r",
+					"let uniqueKey   = String(pm.iterationData.get(\"Uniquekey\") || \"\").trim();\r",
+					"let uniqueValue = String(pm.iterationData.get(\"Uniquevalue\") || \"\").trim();\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 0.1 – UNIQUE OBJECT PICK (FOR LIST APIs)\r",
+					" ************************************************************/\r",
+					"if (uniqueKey && uniqueValue) {\r",
+					"\r",
+					"    let foundObject = null;\r",
+					"\r",
+					"    function deepSearch(node) {\r",
+					"        if (!node || foundObject) return;\r",
+					"\r",
+					"        if (Array.isArray(node)) {\r",
+					"            node.forEach(deepSearch);\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        if (typeof node === \"object\") {\r",
+					"            if (\r",
+					"                node.hasOwnProperty(uniqueKey) &&\r",
+					"                String(node[uniqueKey]) === String(uniqueValue)\r",
+					"            ) {\r",
+					"                foundObject = node;\r",
+					"                return;\r",
+					"            }\r",
+					"            Object.values(node).forEach(deepSearch);\r",
+					"        }\r",
+					"    }\r",
+					"\r",
+					"    deepSearch(actualRoot);\r",
+					"\r",
+					"    if (!foundObject) {\r",
+					"        pm.test(\"Verify unique object exists\", () => {\r",
+					"            pm.expect.fail(`❌ Object with ${uniqueKey}=${uniqueValue} not found`);\r",
+					"        });\r",
+					"        return;\r",
+					"    }\r",
+					"\r",
+					"    // 🔥 Switch validation root\r",
+					"    actualRoot = foundObject;\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 1 – GET VALUE BY PATH\r",
+					" ************************************************************/\r",
+					"function getValueByPath(obj, path) {\r",
+					"    return path\r",
+					"        .replace(/\\[(\\d+)\\]/g, '.$1')\r",
+					"        .split('.')\r",
+					"        .reduce((acc, key) => acc && acc[key], obj);\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 2 – FLATTEN EXPECTED OBJECT (path → value)\r",
+					" ************************************************************/\r",
+					"function flattenExpected(obj, prefix = \"\", out = {}) {\r",
+					"    for (let key in obj) {\r",
+					"        let path = prefix ? `${prefix}.${key}` : key;\r",
+					"        let val = obj[key];\r",
+					"\r",
+					"        if (typeof val === \"object\" && val !== null && !Array.isArray(val)) {\r",
+					"            flattenExpected(val, path, out);\r",
+					"        } else {\r",
+					"            out[path] = val;\r",
+					"        }\r",
+					"    }\r",
+					"    return out;\r",
+					"}\r",
+					"\r",
+					"let expectedMap = flattenExpected(expectedRoot);\r",
+					"let expectedKeys = Object.keys(expectedMap);\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 3 – SMART AUTO SCENARIO NAME BUILDER\r",
+					" ************************************************************/\r",
+					"function buildScenarioName(path, expectedValue) {\r",
+					"\r",
+					"    let keyName = path.split(\".\").slice(-1)[0];\r",
+					"    keyName = keyName.replace(/([A-Z])/g, \" $1\").toLowerCase();\r",
+					"\r",
+					"    if (\r",
+					"        typeof expectedValue === \"string\" &&\r",
+					"        expectedValue.startsWith(\"{{\") &&\r",
+					"        expectedValue.endsWith(\"}}\")\r",
+					"    ) {\r",
+					"        let varName = expectedValue.slice(2, -2);\r",
+					"        return `Capture ${keyName} into ${varName}`;\r",
+					"    }\r",
+					"\r",
+					"    if (expectedValue === \"NOT_NULL\") {\r",
+					"        return `Verify ${keyName} is not null`;\r",
+					"    }\r",
+					"\r",
+					"    if (\r",
+					"        typeof expectedValue === \"string\" &&\r",
+					"        expectedValue.startsWith(\"REGEX:\")\r",
+					"    ) {\r",
+					"        return `Verify ${keyName} format is valid`;\r",
+					"    }\r",
+					"\r",
+					"    if (expectedValue === null) {\r",
+					"        return `Verify ${keyName} is null`;\r",
+					"    }\r",
+					"\r",
+					"    return `Verify ${keyName} value is correct`;\r",
+					"}\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 4 – BUILD SCENARIO LIST (AUTO + CSV)\r",
+					" ************************************************************/\r",
+					"let userScenarios = rawScenario\r",
+					"    ? rawScenario.split(\",\").map(s => s.trim())\r",
+					"    : [];\r",
+					"\r",
+					"let scenarioList = expectedKeys.map((key, index) => {\r",
+					"    return userScenarios[index] || buildScenarioName(key, expectedMap[key]);\r",
+					"});\r",
+					"\r",
+					"/************************************************************\r",
+					" * STEP 5 – SCENARIO-WISE VALIDATION\r",
+					" ************************************************************/\r",
+					"expectedKeys.forEach((path, index) => {\r",
+					"\r",
+					"    let expectedValue = expectedMap[path];\r",
+					"    let actualValue = getValueByPath(actualRoot, path);\r",
+					"    let scenarioName = scenarioList[index];\r",
+					"\r",
+					"    pm.test(scenarioName, () => {\r",
+					"\r",
+					"        /* ---------- {{var}} → NOT_NULL + SET VARIABLE ---------- */\r",
+					"        if (\r",
+					"            typeof expectedValue === \"string\" &&\r",
+					"            expectedValue.startsWith(\"{{\") &&\r",
+					"            expectedValue.endsWith(\"}}\")\r",
+					"        ) {\r",
+					"            let varName = expectedValue.slice(2, -2).trim();\r",
+					"\r",
+					"            pm.expect(\r",
+					"                actualValue !== null &&\r",
+					"                actualValue !== undefined &&\r",
+					"                actualValue !== \"\",\r",
+					"                `❌ ${path} expected NOT_NULL for {{${varName}}} but found ${actualValue}`\r",
+					"            ).to.be.true;\r",
+					"\r",
+					"            pm.collectionVariables.set(varName, actualValue);\r",
+					"            console.log(`✅ Collection variable set: ${varName} = ${actualValue}`);\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        /* ---------- NOT_NULL ---------- */\r",
+					"        if (expectedValue === \"NOT_NULL\") {\r",
+					"            pm.expect(\r",
+					"                actualValue !== null &&\r",
+					"                actualValue !== undefined &&\r",
+					"                actualValue !== \"\",\r",
+					"                `❌ ${path} expected NOT_NULL but found ${actualValue}`\r",
+					"            ).to.be.true;\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        /* ---------- REGEX ---------- */\r",
+					"        if (\r",
+					"            typeof expectedValue === \"string\" &&\r",
+					"            expectedValue.startsWith(\"REGEX:\")\r",
+					"        ) {\r",
+					"            let pattern = expectedValue.replace(\"REGEX:\", \"\");\r",
+					"            let regex = new RegExp(pattern);\r",
+					"\r",
+					"            pm.expect(\r",
+					"                regex.test(String(actualValue)),\r",
+					"                `❌ ${path} expected to match regex ${pattern} but got \"${actualValue}\"`\r",
+					"            ).to.be.true;\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        /* ---------- STRING CONTAINS ---------- */\r",
+					"        if (typeof expectedValue === \"string\" && typeof actualValue === \"string\") {\r",
+					"            pm.expect(\r",
+					"                actualValue.includes(expectedValue),\r",
+					"                `❌ ${path} expected to contain \"${expectedValue}\" but got \"${actualValue}\"`\r",
+					"            ).to.be.true;\r",
+					"            return;\r",
+					"        }\r",
+					"\r",
+					"        /* ---------- DEFAULT EXACT MATCH ---------- */\r",
+					"        pm.expect(\r",
+					"            actualValue,\r",
+					"            `❌ ${path} mismatch`\r",
+					"        ).to.eql(expectedValue);\r",
+					"    });\r",
+					"});\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "Merchant_id",
+			"value": ""
+		},
+		{
+			"key": "marchant_accessToken",
+			"value": ""
+		}
+	]
+}
