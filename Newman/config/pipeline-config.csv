@@ -1,0 +1,3 @@
+COLLECTION_PATH,LOGIN_DATA_PATH,REPORT_DIR,REPORT_HTML,EMAIL_TO
+Newman/Collection-1.postman_collection.json,Newman/login.csv,reports,newman-report.html,qa@company.com
+
