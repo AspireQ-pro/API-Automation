@@ -1,7 +1,3 @@
 COLLECTION_PATH,LOGIN_DATA_PATH,REPORT_DIR,REPORT_HTML,EMAIL_TO
-<<<<<<< HEAD
-Newman/collections/Collection-1.postman_collection.json,Newman/testdata/user_dev.csv,reports,newman-report.html,shailesh.d@aspireq.in,niraj.d@aspireq.in,abhishek.k@aspireq.in,abhijit.p@aspireq.in,rahul.k@aspireq.in,shreeraj.t@aspireq.in,sushant.l@aspireq.in
-=======
-Newman/collections/Collection-1.postman_collection.json,Newman/testdata/user_dev.csv,reports,newman-report.html,shailesh.d@aspireq.in,sushant.l@aspireq.in,abhishek.k@aspireq.in,niraj.d@aspireq.in,rahul.k@aspireq.in,shreeraj.t@aspireq.in,abhijit.p@aspireq.in
->>>>>>> 723defc (Updated email recipients)
+Newman/collections/Collection-1.postman_collection.json,Newman/testdata/user_dev.csv,reports,newman-report.html,"shailesh.d@aspireq.in,niraj.d@aspireq.in,abhishek.k@aspireq.in,abhijit.p@aspireq.in,rahul.k@aspireq.in,shreeraj.t@aspireq.in,sushant.l@aspireq.in"
 
