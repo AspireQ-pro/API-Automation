@@ -1,6 +1,3 @@
-COLLECTION_PATH=Newman/collections/Collection-1.postman_collection.json
-LOGIN_DATA_PATH=Newman/testdata/user_dev.csv
-REPORT_DIR=reports
-REPORT_HTML=newman-report.html
-EMAIL_TO=shailesh.d@aspireq.in,niraj.d@aspireq.in,abhishek.k@aspireq.in,abhijit.p@aspireq.in,rahul.k@aspireq.in,shreeraj.t@aspireq.in,sushant.l@aspireq.in
+COLLECTION_PATH,LOGIN_DATA_PATH,REPORT_DIR,REPORT_HTML,EMAIL_TO
+Newman/collections/Collection-1.postman_collection.json,Newman/testdata/user_dev.csv,reports,newman-report.html,shailesh.d@aspireq.in;niraj.d@aspireq.in;abhishek.k@aspireq.in;abhijit.p@aspireq.in;rahul.k@aspireq.in;shreeraj.t@aspireq.in;sushant.l@aspireq.in
 
